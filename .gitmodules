@@ -1,0 +1,3 @@
+[submodule "MoneyConverter"]
+	path = MoneyConverter
+	url = https://github.com/lmjing/MoneyConverter
