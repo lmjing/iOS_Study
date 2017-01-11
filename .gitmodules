@@ -1,3 +1,6 @@
 [submodule "MoneyConverter"]
 	path = MoneyConverter
 	url = https://github.com/lmjing/MoneyConverter
+[submodule "Swift-Samples"]
+	path = Swift-Samples
+	url = https://github.com/lmjing/Swift-Samples
