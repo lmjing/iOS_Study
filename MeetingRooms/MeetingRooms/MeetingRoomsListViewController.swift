@@ -13,12 +13,18 @@ class MeetingRoomsListViewController: UITableViewController {
     //1단계 : 딕셔너리 선언 후 해당 데이터 값 한 섹션에 순서 상관 없이 표시
     //var MeetingRooms:[String:Int] = ["Banksy":4,"Rivera":8,"Kahlo":8,"Picasso":10,"Cezanne":20,"Matisse":30,"Renoir":40]
     //2단계 : 2중 딕셔너리(?) 제작하여 섹션 나누어 줄 예정 ( 순서에 대한걸 전혀 다루지 않았는데, 결과 값이 다름. 무슨 차이인지 모르겠음 )
-    var MeetingRooms:[String:[String:Int]] = ["Meeting":["Banksy":4,"Rivera":8,"Kahlo":8,"Picasso":10],"Seminar":["Cezanne":20,"Matisse":30,"Renoir":40]]
+    var MeetingRooms:[String:[String:Int]] = ["Seminar":["Cezanne":20,"Matisse":30,"Renoir":40],"Meeting":["Banksy":4,"Rivera":8,"Kahlo":8,"Picasso":10]]
     /*
      * 3단계 : header & footer 생성
      * option키 + 단어 누르면 해당 레퍼런스 페이지로 이동 가능
      * header, footer은 필수는 아니지만 선택적인 사항으로 필요할 경우 선언하여 사용하면 된다.
      */
+    
+    // 6단계 : 섹션 정렬 하나로 묶기
+    func meetingRoomsAtIndex(_ index: Int) -> (String, [String:Int]){
+        let orderedMeetingRooms = MeetingRooms.sorted(by: { $0.1.first!.1 < $1.1.first!.1 })
+        return orderedMeetingRooms[index]
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,9 +55,18 @@ class MeetingRoomsListViewController: UITableViewController {
         //1단계 : 배열의 개수 = 총 row의 개수
         //return MeetingRooms.count
         
-        //2단계 : 섹션 별 개수가 다르기 때문에 각각의 개수 반환
+        /*2단계 : 섹션 별 개수가 다르기 때문에 각각의 개수 반환
         let categoryValues = Array(MeetingRooms.values)[section] // 딕셔너리의 value(방 정보)만 따로 배열 형태로 가져오고, 각 섹션 인덱스 값으로 찾는다.
         return categoryValues.count // 해당 섹션의 value 개수 반환
+        */
+        
+        /*4단계 : 섹션별 배열
+        let orderedMeetingRooms = MeetingRooms.sorted(by: { $0.1.first!.1 < $1.1.first!.1 }) // 각 섹션의 첫번째 value 값 들 비교, 오름차순 정렬
+        return orderedMeetingRooms[section].1.count
+        */
+        
+        //6단계 : 함수 이용 통합
+        return meetingRoomsAtIndex(section).1.count
     }
 
     //원래 주석 처리 되어있었는데 풀어 주었음.
@@ -69,26 +84,71 @@ class MeetingRoomsListViewController: UITableViewController {
         }
         */
         
-        //2단계
+        /*2단계
         let categoryValues = Array(MeetingRooms.values)[indexPath.section] //각 섹션의 방 정보들 배열 형식으로 가져옴
         let roomName = Array(categoryValues.keys)[indexPath.row] // 방 이름 = 방 정보의 key값
         let capacity = Array(categoryValues.values)[indexPath.row] // 방 수용 개수 = 방 정보의 value값
         
         cell.textLabel?.text = roomName
         cell.detailTextLabel?.text = "\(capacity)"
+        */
 
+        /*4단계 - 섹션 정렬
+        let orderedMeetingRooms = MeetingRooms.sorted(by: { $0.1.first!.1 < $1.1.first!.1 }) // 각 섹션의 첫번째 value 값 들 비교, 오름차순 정렬(섹션만 정렬)
+
+        let categoryValues = orderedMeetingRooms[indexPath.section].1 //위에 정렬한 값의 value값인 딕셔너리 가져옴
+        let roomName = Array(categoryValues.keys)[indexPath.row] // 방 이름 = 방 정보의 key값
+        let capacity = Array(categoryValues.values)[indexPath.row] // 방 수용 개수 = 방 정보의 value값
+        */
+        
+        /*5단계 - 섹션 정렬 + 섹션 내의 딕셔너리 재 정렬
+        let orderedMeetingRooms = MeetingRooms.sorted(by: { $0.1.first!.1 < $1.1.first!.1 }) // 각 섹션의 첫번째 value 값 들 비교, 오름차순 정렬(섹션만 정렬)
+        
+        let categoryValues = orderedMeetingRooms[indexPath.section].1 //위에 정렬한 값의 value값인 딕셔너리 가져옴
+        let orderedCategoryValues = categoryValues.sorted(by: { $0.1 < $1.1 })
+        let roomName = orderedCategoryValues[indexPath.row].0 // 방 이름 = 방 정보의 key값
+        let capacity = orderedCategoryValues[indexPath.row].1 // 방 수용 개수 = 방 정보의 value값
+        */
+        
+        //6단계 : 함수 이용 통합
+        let categoryValues = meetingRoomsAtIndex(indexPath.section).1 //위에 정렬한 값의 value값인 딕셔너리 가져옴
+        let orderedCategoryValues = categoryValues.sorted(by: { $0.1 < $1.1 })
+        let roomName = orderedCategoryValues[indexPath.row].0 // 방 이름 = 방 정보의 key값
+        let capacity = orderedCategoryValues[indexPath.row].1 // 방 수용 개수 = 방 정보의 value값
+
+        
+        cell.textLabel?.text = roomName
+        cell.detailTextLabel?.text = "\(capacity)"
+
+        
         return cell
     }
     
     //3단계 : header
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section:Int) -> String? {
         return Array(MeetingRooms.keys)[section] // 딕셔너리에 선언해둔 섹션 이름 가져와 선언
+        
+        /*4단계 - 섹션 정렬 ( breakpoint 걸림 런타임 오류 )
+        let orderedMeetingRooms = MeetingRooms.sorted(by: { $0.1.first!.1 < $1.1.first!.1 }) // 각 섹션의 첫번째 value 값 들 비교, 오름차순 정렬
+        return orderedMeetingRooms[section].0
+        */
+        
+        //6단계 - 하나로 묶기 ( breakpoint 걸림 런타임 오류 )
+        //return meetingRoomsAtIndex(section).0
     }
     
     //3단계 : footer
     override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
         let rowCount = Array(MeetingRooms.values)[section].count
         return "\(rowCount) rooms"
+        
+        /*4단계 - 섹션 정렬 ( breakpoint 걸림 런타임 오류 )
+        let orderedMeetingRooms = MeetingRooms.sorted(by: { $0.1.first!.1 < $1.1.first!.1 }) // 각 섹션의 첫번째 value 값 들 비교, 오름차순 정렬(섹션만 정렬)
+        return "\(orderedMeetingRooms[section].1.count) rooms"
+        */
+        
+        //6단계 - 하나로 묶기 ( breakpoint 걸림 런타임 오류 )
+        //return "\(meetingRoomsAtIndex(section)) rooms"
     }
 
 
