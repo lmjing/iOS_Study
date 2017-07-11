@@ -170,3 +170,14 @@ print(pricesInString)
 //딕셔너리 - 합쳐서 하나의 문장 만들기
 let WeAreFamily = family.reduce("I have a Family : \n", { $0 + "\($1.0)'s age is \($1.1)\n"})
 print(WeAreFamily)
+
+import Foundation
+
+func lengthConverter(input: Double) -> Measurement<UnitLength> {
+    let original = Measurement(value: input, unit: UnitLength.meters)
+    
+    let converted = original.converted(to: UnitLength.centimeters)
+    return converted
+}
+
+print(lengthConverter(input: 20.0).description)
