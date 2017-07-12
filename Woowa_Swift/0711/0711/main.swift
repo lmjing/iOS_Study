@@ -28,9 +28,8 @@ let myCalendar = MyCalendar()
 print(myCalendar.getNowDateTime())
 print(myCalendar.getDateFormat("2013/01/10"))
 print(myCalendar.getDateFormat(year: 2018, month: 03, day: 20))
-let date = NSDate() as Date
-print(myCalendar.getKorDate(date: date))
+print(myCalendar.getKorDate(date: Date()))
 print(myCalendar.getStartOfDate(year: 2017, month: 2))
-myCalendar.printMonthCalendar(year: 2017, month: 2)
+print(myCalendar.getMonthCalendar(year: 2017, month: 3))
 //단위 변환
 //print(lengthConverter(input: 20.0))

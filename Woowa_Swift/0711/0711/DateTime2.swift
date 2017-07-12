@@ -9,29 +9,28 @@
 import Foundation
 
 class MyCalendar {
-    let cal = NSCalendar.current
-    var components = NSDateComponents()
+    let cal = Calendar.current
+    var components = DateComponents()
     let dateFormatter = DateFormatter()
+    let timeZone = TimeZone(secondsFromGMT: +9)
     
     func getNowDateTime() -> (year: Int,month: Int,day: Int,hour: Int,minute: Int,second: Int) {
-        let component = cal.dateComponents([.year, .month, .day, .hour, .minute, .second], from: NSDate() as Date)
+        let component = cal.dateComponents([.year, .month, .day, .hour, .minute, .second], from: Date())
         return (component.year!, component.month!, component.day!, component.hour!, component.minute!, component.second!)
     }
     
     func getDateFormat(_ date_str: String) -> Date {
         dateFormatter.dateFormat = "yyyy/mm/dd"
+        dateFormatter.timeZone = timeZone
         return dateFormatter.date(from: date_str)!
     }
     
     func getDateFormat(year: Int, month: Int, day: Int) -> Date {
-        components.year = year
-        components.month = month
-        components.day = day
-        
-        return cal.date(from: components as DateComponents)!
+        components = DateComponents(calendar: cal, timeZone: timeZone, year: year, month: month, day: day)
+
+        return cal.date(from: components)!
     }
     
-    //??어케
     func getKorDate(date: Date) -> String {
         dateFormatter.locale = Locale(identifier: "ko_KR")
         dateFormatter.dateStyle = .long
@@ -41,41 +40,52 @@ class MyCalendar {
     }
     
     func getStartOfDate(year: Int, month: Int) -> String {
-        let input_date = NSDateComponents()
-        input_date.year = year
-        input_date.month = month
-        
-        let getDate = cal.startOfDay(for: cal.date(from: input_date as DateComponents)!)
+        let input_date = DateComponents(timeZone: timeZone, year: year, month: month)
+        let startDate = cal.startOfDay(for: cal.date(from: input_date)!)
+        /*
         let weekday = cal.component(.weekday, from: getDate)
-        
-        //dateformat = "EEEE"
+        //이 함수는 한글만 되는 함수이므로 밑에 과정은 다른 함수를 따로 쓰는 것이 나을 듯
         switch weekday {
-        case 0: return "월요일"
-        case 1: return "화요일"
-        case 2: return "수요일"
-        case 3: return "목요일"
-        case 4: return "금요일"
-        case 5: return "토요일"
-        case 6: return "일요일"
+        case 2: return "월요일"
+        case 3: return "화요일"
+        case 4: return "수요일"
+        case 5: return "목요일"
+        case 6: return "금요일"
+        case 7: return "토요일"
+        case 1: return "일요일"
         default: return "error"
         }
+        */
+        dateFormatter.dateFormat = "EEEE"
+        let weekday = dateFormatter.string(from: startDate)
+       
+        return weekday
     }
     
-    func printMonthCalendar(year: Int, month: Int) {
-        var start_components = DateComponents(calendar: cal, year: year, month: month, day: 1)
-        start_components.timeZone("GMT+9")
+    func getMonthCalendar(year: Int, month: Int) -> [[Int]] {
         
-        let start_day = cal.date(from: start_components as DateComponents)
-        print("start day : "+String(describing: start_day))
-        let end_components = NSDateComponents()
-        end_components.year = year
-        end_components.month = month
-        end_components.day = -1
+        let end_date = DateComponents(calendar: cal, timeZone: timeZone, year: year, month: month+1, day: 0)
+        let end_day = cal.component(.day, from: cal.date(from: end_date)!)
         
-        let end_day = cal.date(from: end_components as DateComponents)
-        print("end day : "+String(describing: end_day))
-        
-       // let week = cal.dateComponents([.year, .month, .day], from: <#T##Date#>, to: <#T##Date#>)
+        var day = 0
+        var result = [[Int]]()
+        var week = [Int]()
+        //let end_day = end_date.day ?? 0
+        print(end_day)
+        while day != end_day {
+            day += 1
+
+            let current_day = DateComponents(calendar: cal, timeZone: timeZone, year: year, month: month, day: day)
+            let weekday = cal.component(.weekday, from: cal.date(from: current_day)!)
+            week.append(current_day.day!)
+            
+            if weekday == 7 || day == end_day {
+                result.append(week)
+                week = [Int]()
+            }
+            
+        }
+        return result
     }
     
 }
