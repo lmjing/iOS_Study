@@ -137,7 +137,7 @@ class Dduckppokki: Food {
     }
     
     required init?(coder aDecoder: NSCoder) {
-        spicy = aDecoder.decodeObject(forKey: "spicy") as! Spicy
+        spicy = Dduckppokki.Spicy(rawValue: Int(aDecoder.decodeCInt(forKey: "spicy")))!
         super.init(coder: aDecoder)
     }
 }

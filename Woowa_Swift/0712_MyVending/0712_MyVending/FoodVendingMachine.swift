@@ -13,11 +13,14 @@ let center = NotificationCenter.default
 let nc = Notification.Name("NotificationIdentifier")
 
 class FoodVendingMachine: NSObject, NSCoding {
+    
+    static var instance = FoodVendingMachine()
     var menuList: [String:Food]
     var buyList: [String:Int]
     var balance: Int
     
-    override init() {
+    private override init() {
+        print("호출")
         menuList = [:]
         buyList = [:]
         balance = 0
@@ -35,9 +38,11 @@ class FoodVendingMachine: NSObject, NSCoding {
         aCoder.encode(balance, forKey: "balance")
     }
     
-    func add(money: Int) {
+    func add(money: Int) -> Int {
         balance += money
         print("현재 금액 : "+String(balance))
+        
+        return balance
     }
     
     func add(food: Food) {
@@ -79,12 +84,11 @@ class FoodVendingMachine: NSObject, NSCoding {
         return result
     }
     
-    func buy(food: Food) -> Int {
-        let foodName = food.restaurant + "-" + food.name
-        
+    func buy(foodName: String) -> Int {
+        //let foodName = food.restaurant + "-" + food.name
         if let exist = menuList[foodName] {
-            balance -= exist.price
-            if balance >= 0 {
+            if (menuList[foodName]?.price)! < balance {
+                balance -= exist.price
                 exist.capacity -= 1
                 print(foodName + " 구매완료")
                 buyList[foodName] = exist.price
@@ -95,18 +99,13 @@ class FoodVendingMachine: NSObject, NSCoding {
             }
         }else {
             print("error : 찾으시는 음식이 존재하지 않습니다.")
+            return -2
         }
-        
-        return -1
     }
     
     //그냥 String배열로 리턴
-    func getBuyList() -> [String] {
-        var result = [String]()
-        for (foodName, price) in buyList {
-            result.append(foodName + "     " + String(price) + " 원")
-        }
-        return result
+    func getBuyList() -> [String:Int] {
+        return buyList
     }
     
 }
