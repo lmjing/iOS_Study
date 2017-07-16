@@ -18,6 +18,8 @@ class AddViewController2: UIViewController {
     @IBOutlet var foodImageView: [UIImageView]!
     @IBOutlet weak var moneyLabel: UILabel!
     
+    @IBOutlet var menuListView: [UITableView]!
+    
     let center = NotificationCenter.default
     let nc = Notification.Name("NotificationIdentifier2")
     var vendingMachine2 = FoodVendingMachine2.instance
@@ -28,6 +30,11 @@ class AddViewController2: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        for tableView in menuListView {
+            tableView.delegate = self
+            tableView.dataSource = self
+        }
         
         initView()
         
@@ -180,4 +187,35 @@ class AddViewController2: UIViewController {
             }
         }
     }
+}
+
+
+extension AddViewController2: UITableViewDelegate, UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        var result = 0
+        if let count = vendingMachine2.menuList[tableView.tag]?.count {
+            result = count
+        }
+        return result
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        let titleList: [String] = Array(vendingMachine2.menuList[tableView.tag]!.keys)
+        
+        cell.textLabel?.text = titleList[indexPath.row]
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "메뉴"
+    }
+    
 }
