@@ -210,6 +210,8 @@ extension AddViewController2: UITableViewDelegate, UITableViewDataSource {
         let titleList: [String] = Array(vendingMachine2.menuList[tableView.tag]!.keys)
         
         cell.textLabel?.text = titleList[indexPath.row]
+        cell.textLabel?.font = UIFont(name: (cell.textLabel?.font.fontName)!, size: 15)
+        cell.detailTextLabel?.text = "서브"
         
         return cell
     }
