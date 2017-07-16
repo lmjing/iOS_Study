@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16D30" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="PeY-ml-0D0">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="PeY-ml-0D0">
     <device id="ipad9_7" orientation="landscape">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -51,7 +51,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TD0-0C-1Bo">
+                            <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TD0-0C-1Bo">
                                 <rect key="frame" x="30" y="300" width="140" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <accessibility key="accessibilityConfiguration" label="aa"/>
@@ -59,28 +59,28 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r56-DF-ng7">
+                            <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r56-DF-ng7">
                                 <rect key="frame" x="180" y="300" width="140" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3kF-GO-ipf">
+                            <label opaque="NO" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3kF-GO-ipf">
                                 <rect key="frame" x="330" y="300" width="140" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="84t-hj-ODw">
+                            <label opaque="NO" userInteractionEnabled="NO" tag="4" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="84t-hj-ODw">
                                 <rect key="frame" x="480" y="300" width="140" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EWI-OP-RH0">
+                            <label opaque="NO" userInteractionEnabled="NO" tag="5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EWI-OP-RH0">
                                 <rect key="frame" x="630" y="300" width="140" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
@@ -202,30 +202,29 @@
                         <color key="backgroundColor" red="0.93236031254016272" green="0.94764092766446106" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <connections>
-                        <outlet property="bossamBtn" destination="r2W-yJ-YSB" id="Dw9-A6-O6Q"/>
-                        <outlet property="bossamLabel" destination="3kF-GO-ipf" id="98A-Qr-Tva"/>
-                        <outlet property="chickenBtn" destination="MKT-z4-YwH" id="up7-iP-2P5"/>
-                        <outlet property="chickenLabel" destination="TD0-0C-1Bo" id="fvG-lE-AxF"/>
-                        <outlet property="dduckBtn" destination="QVy-d9-oTe" id="JQT-hH-vOe"/>
-                        <outlet property="dduckLabel" destination="EWI-OP-RH0" id="Bw0-XA-6ts"/>
-                        <outlet property="hambugerBtn" destination="2oi-Av-Gvu" id="5fG-aI-fGh"/>
-                        <outlet property="hambugerLabel" destination="84t-hj-ODw" id="aKD-Ic-kuL"/>
                         <outlet property="moneyLabel" destination="auN-lY-fe7" id="HyD-af-K4r"/>
-                        <outlet property="pizzaBtn" destination="ZK0-jf-Zot" id="xRW-RP-1cz"/>
-                        <outlet property="pizzaLabel" destination="r56-DF-ng7" id="hkv-dw-bVk"/>
                         <outletCollection property="purchaseBtn" destination="U9L-ZV-4Om" collectionClass="NSMutableArray" id="zT6-CP-deR"/>
                         <outletCollection property="purchaseBtn" destination="8wp-Ql-P5g" collectionClass="NSMutableArray" id="IlC-ve-mBr"/>
                         <outletCollection property="purchaseBtn" destination="yrz-Gb-hAS" collectionClass="NSMutableArray" id="2iV-Zs-ZBx"/>
                         <outletCollection property="purchaseBtn" destination="xLr-re-vDh" collectionClass="NSMutableArray" id="JH8-FO-5xr"/>
                         <outletCollection property="purchaseBtn" destination="ld4-ZI-1Ub" collectionClass="NSMutableArray" id="LHS-tZ-4DC"/>
-                        <outletCollection property="addMoneyBtn" destination="AFi-Yo-27h" collectionClass="NSMutableArray" id="bLO-Qo-Ds5"/>
                         <outletCollection property="addMoneyBtn" destination="AFi-Yo-27h" collectionClass="NSMutableArray" id="vYT-0W-6cE"/>
-                        <outletCollection property="addMoneyBtn" destination="6TD-RO-EgE" collectionClass="NSMutableArray" id="7JE-tt-TVU"/>
                         <outletCollection property="foodImageView" destination="cII-NT-mUV" collectionClass="NSMutableArray" id="vfd-90-8dW"/>
                         <outletCollection property="foodImageView" destination="EWU-02-Ldg" collectionClass="NSMutableArray" id="opj-RN-Q1T"/>
                         <outletCollection property="foodImageView" destination="cHU-Ak-doj" collectionClass="NSMutableArray" id="dJo-De-rj5"/>
                         <outletCollection property="foodImageView" destination="LoJ-ba-V6p" collectionClass="NSMutableArray" id="Mx1-fa-S8X"/>
                         <outletCollection property="foodImageView" destination="C3W-i6-CoS" collectionClass="NSMutableArray" id="ike-9E-EHJ"/>
+                        <outletCollection property="capacityLabel" destination="TD0-0C-1Bo" collectionClass="NSMutableArray" id="y8m-XL-wE7"/>
+                        <outletCollection property="capacityLabel" destination="r56-DF-ng7" collectionClass="NSMutableArray" id="fO7-Sj-QMr"/>
+                        <outletCollection property="capacityLabel" destination="3kF-GO-ipf" collectionClass="NSMutableArray" id="v2m-m9-HI9"/>
+                        <outletCollection property="capacityLabel" destination="84t-hj-ODw" collectionClass="NSMutableArray" id="YJ5-lU-l5E"/>
+                        <outletCollection property="capacityLabel" destination="EWI-OP-RH0" collectionClass="NSMutableArray" id="00a-GK-U9P"/>
+                        <outletCollection property="addFoodBtn" destination="MKT-z4-YwH" collectionClass="NSMutableArray" id="Rrn-P3-vU1"/>
+                        <outletCollection property="addFoodBtn" destination="ZK0-jf-Zot" collectionClass="NSMutableArray" id="j7N-ky-Zhq"/>
+                        <outletCollection property="addFoodBtn" destination="r2W-yJ-YSB" collectionClass="NSMutableArray" id="BBb-Df-6xq"/>
+                        <outletCollection property="addFoodBtn" destination="2oi-Av-Gvu" collectionClass="NSMutableArray" id="XMM-pv-oxQ"/>
+                        <outletCollection property="addFoodBtn" destination="QVy-d9-oTe" collectionClass="NSMutableArray" id="bnK-6c-i8w"/>
+                        <outletCollection property="addMoneyBtn" destination="6TD-RO-EgE" collectionClass="NSMutableArray" id="bjG-fm-RID"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9x5-mC-qEB" userLabel="First Responder" sceneMemberID="firstResponder"/>

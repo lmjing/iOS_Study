@@ -10,23 +10,14 @@ import UIKit
 
 class AddViewController: UIViewController {
 
-    @IBOutlet weak var chickenBtn: UIButton!
-    @IBOutlet weak var pizzaBtn: UIButton!
-    @IBOutlet weak var bossamBtn: UIButton!
-    @IBOutlet weak var hambugerBtn: UIButton!
-    @IBOutlet weak var dduckBtn: UIButton!
-    
-    @IBOutlet weak var chickenLabel: UILabel!
-    @IBOutlet weak var pizzaLabel: UILabel!
-    @IBOutlet weak var bossamLabel: UILabel!
-    @IBOutlet weak var hambugerLabel: UILabel!
-    @IBOutlet weak var dduckLabel: UILabel!
-    
-    @IBOutlet var foodImageView: [UIImageView]!
-    @IBOutlet weak var moneyLabel: UILabel!
-    
+    @IBOutlet var addFoodBtn: [UIButton]!
     @IBOutlet var addMoneyBtn: [UIButton]!
     @IBOutlet var purchaseBtn: [UIButton]!
+    
+    
+    @IBOutlet var capacityLabel: [UILabel]!
+    @IBOutlet var foodImageView: [UIImageView]!
+    @IBOutlet weak var moneyLabel: UILabel!
     
     let center = NotificationCenter.default
     let nc = Notification.Name("NotificationIdentifier")
@@ -44,6 +35,8 @@ class AddViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        initView()
+        
         for btn in addMoneyBtn {
             btn.addTarget(self, action: #selector(pressAddMoney(_:)), for: .touchUpInside)
         }
@@ -52,12 +45,10 @@ class AddViewController: UIViewController {
             btn.addTarget(self, action: #selector(pressPurchase(_:)), for: .touchUpInside)
         }
         
-        chickenBtn.addTarget(self, action: #selector(btnPressed(_:)), for: .touchUpInside)
-        pizzaBtn.addTarget(self, action: #selector(btnPressed(_:)), for: .touchUpInside)
-        bossamBtn.addTarget(self, action: #selector(btnPressed(_:)), for: .touchUpInside)
-        hambugerBtn.addTarget(self, action: #selector(btnPressed(_:)), for: .touchUpInside)
-        dduckBtn.addTarget(self, action: #selector(btnPressed(_:)), for: .touchUpInside)
-    
+        for btn in addFoodBtn {
+            btn.addTarget(self, action: #selector(btnPressed(_:)), for: .touchUpInside)
+        }
+        
         center.addObserver(self,
                        selector: #selector(catchNotification),
                        name: nc,
@@ -65,26 +56,22 @@ class AddViewController: UIViewController {
     }
     
     func initView() {
-        chickenLabel.text = "0개"
-        pizzaLabel.text = "0개"
-        bossamLabel.text = "0개"
-        hambugerLabel.text = "0개"
-        dduckLabel.text = "0개"
         moneyLabel.text = "잔액 : " + String(vendingMachine.balance) + "원"
         
         for (foodName, _) in vendingMachine.getBuyList() {
             print(foodName)
             purchaseImageFoodName = foodName
-            viewWillAppear(true)
+//            viewWillAppear(true)
+            viewPurchasedList()
         }
         
         for (foodName, capacity) in vendingMachine.getMenuList() {
             switch foodName {
-            case chickenName: chickenLabel.text = String(capacity)+"개"
-            case pizzaName: pizzaLabel.text = String(capacity)+"개"
-            case bossamName: bossamLabel.text = String(capacity)+"개"
-            case hambugerName: hambugerLabel.text = String(capacity)+"개"
-            case dduckppokkiName: dduckLabel.text = String(capacity)+"개"
+            case chickenName: capacityLabel[0].text = String(capacity)+"개"
+            case pizzaName: capacityLabel[1].text = String(capacity)+"개"
+            case bossamName: capacityLabel[2].text = String(capacity)+"개"
+            case hambugerName: capacityLabel[3].text = String(capacity)+"개"
+            case dduckppokkiName: capacityLabel[4].text = String(capacity)+"개"
             default:
                 print("error!!!!!!")
             }
@@ -113,7 +100,16 @@ class AddViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    //이 코드에서는 굳이 필요없지 않나? ( 질문하기! )
     override func viewWillAppear(_ animated: Bool) {
+//        if let imageview = makeImageView(x: purchaseImageXPoint, y: 575) {
+//            self.view.addSubview(imageview)
+//            purchaseImageXPoint += 50
+//            purchaseImageFoodName = nil
+//        }
+    }
+    
+    func viewPurchasedList() {
         if let imageview = makeImageView(x: purchaseImageXPoint, y: 575) {
             self.view.addSubview(imageview)
             purchaseImageXPoint += 50
@@ -185,7 +181,8 @@ class AddViewController: UIViewController {
         if balance > 0 {
             moneyLabel.text = "잔액 : " + String(balance)
             purchaseImageFoodName = foodName
-            viewWillAppear(true)
+//            viewWillAppear(true)
+            viewPurchasedList()
         }else if balance == -2 {
             moneyLabel.text = foodName + " 재고부족"
         }else {
@@ -213,25 +210,15 @@ class AddViewController: UIViewController {
         if let foodList = notification.object as? [String : Int] ?? nil {
             for (foodName, capacity) in foodList {
                 switch foodName {
-                case chickenName: chickenLabel.text = String(capacity)+"개"
-                case pizzaName: pizzaLabel.text = String(capacity)+"개"
-                case bossamName: bossamLabel.text = String(capacity)+"개"
-                case hambugerName: hambugerLabel.text = String(capacity)+"개"
-                case dduckppokkiName: dduckLabel.text = String(capacity)+"개"
+                case chickenName: capacityLabel[0].text = String(capacity)+"개"
+                case pizzaName: capacityLabel[1].text = String(capacity)+"개"
+                case bossamName: capacityLabel[2].text = String(capacity)+"개"
+                case hambugerName: capacityLabel[3].text = String(capacity)+"개"
+                case dduckppokkiName: capacityLabel[4].text = String(capacity)+"개"
                 default:
                     print("error!!!!!!")
                 }
             }
         }
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
