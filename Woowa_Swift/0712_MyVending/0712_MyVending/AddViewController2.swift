@@ -8,8 +8,8 @@
 
 import UIKit
 
-class AddViewController: UIViewController {
-
+class AddViewController2: UIViewController {
+    
     @IBOutlet var addFoodBtn: [UIButton]!
     @IBOutlet var addMoneyBtn: [UIButton]!
     @IBOutlet var purchaseBtn: [UIButton]!
@@ -19,14 +19,8 @@ class AddViewController: UIViewController {
     @IBOutlet weak var moneyLabel: UILabel!
     
     let center = NotificationCenter.default
-    let nc = Notification.Name("NotificationIdentifier")
-    var vendingMachine = FoodVendingMachine.instance
-    
-    var chickenName = "굽네치킨-고추바사삭"
-    let pizzaName = "피자헛-피자"
-    let bossamName = "원할머니보쌈-보쌈정식"
-    let hambugerName = "맥도날드-빅맥버거"
-    let dduckppokkiName = "엽기떡볶이-엽떡"
+    let nc = Notification.Name("NotificationIdentifier2")
+    var vendingMachine2 = FoodVendingMachine2.instance
     
     var purchaseImageXPoint = 40
     var purchaseImageFoodName:String? = nil
@@ -50,38 +44,37 @@ class AddViewController: UIViewController {
         }
         
         center.addObserver(self,
-                       selector: #selector(catchNotification),
-                       name: nc,
-                       object: nil)
+                           selector: #selector(catchNotification),
+                           name: nc,
+                           object: nil)
     }
     
     func initView() {
+        let menuList = vendingMachine2.getAllCapcityList()
         for label in capacityLabel {
-            label.text = "0개"
+            if let capacity = menuList[label.tag] {
+                label.text = String(capacity) + "개"
+            }else {
+                label.text = "0개"
+            }
         }
         
-        moneyLabel.text = "잔액 : " + String(vendingMachine.balance) + "원"
-        
-        for (foodName, _) in vendingMachine.getBuyList() {
-            print(foodName)
-            purchaseImageFoodName = foodName
-//            viewWillAppear(true)
+        moneyLabel.text = "잔액 : " + String(vendingMachine2.balance) + "원"
+        for (menu, _) in vendingMachine2.getBuyList() {
+            print(menu)
+            purchaseImageFoodMenu = menu
             viewPurchasedList()
         }
         
-        for (foodName, capacity) in vendingMachine.getMenuList() {
-            switch foodName {
-            case chickenName: capacityLabel[0].text = String(capacity)+"개"
-            case pizzaName: capacityLabel[1].text = String(capacity)+"개"
-            case bossamName: capacityLabel[2].text = String(capacity)+"개"
-            case hambugerName: capacityLabel[3].text = String(capacity)+"개"
-            case dduckppokkiName: capacityLabel[4].text = String(capacity)+"개"
-            default:
-                print("error!!!!!!")
-            }
+        for imageview in foodImageView {
+            imageview.layer.cornerRadius = 10
+            imageview.clipsToBounds = true
+            imageview.layer.masksToBounds = true
+            imageview.layer.borderWidth = 5
+            imageview.layer.borderColor = UIColor.white.cgColor
         }
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -89,31 +82,31 @@ class AddViewController: UIViewController {
     
     //이 코드에서는 굳이 필요없지 않나? ( 질문하기! )
     override func viewWillAppear(_ animated: Bool) {
-//        if let imageview = makeImageView(x: purchaseImageXPoint, y: 575) {
-//            self.view.addSubview(imageview)
-//            purchaseImageXPoint += 50
-//            purchaseImageFoodName = nil
-//        }
+        //        if let imageview = makeImageView(x: purchaseImageXPoint, y: 575) {
+        //            self.view.addSubview(imageview)
+        //            purchaseImageXPoint += 50
+        //            purchaseImageFoodName = nil
+        //        }
     }
     
     func viewPurchasedList() {
         if let imageview = makeImageView(x: purchaseImageXPoint, y: 575) {
             self.view.addSubview(imageview)
             purchaseImageXPoint += 50
-            purchaseImageFoodName = nil
+            purchaseImageFoodMenu = nil
         }
     }
     
     func makeImageView(x: Int, y: Int) -> UIView? {
-        if let foodName = purchaseImageFoodName {
+        if let menu = purchaseImageFoodMenu {
             var cardImage : UIImageView
             
-            switch foodName {
-                case chickenName: cardImage = UIImageView(image: #imageLiteral(resourceName: "chiken"))
-                case pizzaName: cardImage = UIImageView(image: #imageLiteral(resourceName: "pizza"))
-                case bossamName: cardImage = UIImageView(image: #imageLiteral(resourceName: "bossam"))
-                case hambugerName: cardImage = UIImageView(image: #imageLiteral(resourceName: "hambuger"))
-                case dduckppokkiName: cardImage = UIImageView(image: #imageLiteral(resourceName: "dduck"))
+            switch menu {
+            case 1: cardImage = UIImageView(image: #imageLiteral(resourceName: "chiken"))
+            case 2: cardImage = UIImageView(image: #imageLiteral(resourceName: "pizza"))
+            case 3: cardImage = UIImageView(image: #imageLiteral(resourceName: "bossam"))
+            case 4: cardImage = UIImageView(image: #imageLiteral(resourceName: "hambuger"))
+            case 5: cardImage = UIImageView(image: #imageLiteral(resourceName: "dduck"))
             default: return nil
             }
             cardImage.frame = CGRect(x: x, y: y, width: 140, height: 100)
@@ -124,12 +117,8 @@ class AddViewController: UIViewController {
         }
     }
     
-    @objc public func locationUpdated(notification:Notification) {
-        //Do something
-    }
-    
     func btnPressed(_ btn: UIButton) {
-       
+        
         var food: Food
         switch btn.tag {
         case 1:
@@ -147,63 +136,47 @@ class AddViewController: UIViewController {
             food = Food()
         }
         
-        vendingMachine.add(food: food)
+        vendingMachine2.add(food: food)
     }
     
     func pressPurchase(_ btn: UIButton) {
         print(String(btn.tag)+"눌림")
-        var foodName: String
-        switch btn.tag {
-        case 1: foodName = chickenName
-        case 2: foodName = pizzaName
-        case 3: foodName = bossamName
-        case 4: foodName = hambugerName
-        case 5: foodName = dduckppokkiName
-            
-        default:
-            return
-        }
+        let menu = btn.tag
         
-        let balance = vendingMachine.buy(foodName: foodName)
+        let balance = vendingMachine2.buy(menu: menu)
         if balance > 0 {
             moneyLabel.text = "잔액 : " + String(balance)
-            purchaseImageFoodName = foodName
-//            viewWillAppear(true)
+            purchaseImageFoodMenu = menu
             viewPurchasedList()
         }else if balance == -2 {
-            moneyLabel.text = foodName + " 재고부족"
-        }else {
+            moneyLabel.text = "선택제품의 재고가 부족합니다."
+        }else if balance == -1 {
             moneyLabel.text = "잔액이 부족합니다."
+        }else {
+            print("type error")
         }
     }
     
     func pressAddMoney(_ btn: UIButton) {
+        
         var balance: Int = 0
         switch btn.tag {
-        case 1000: balance = vendingMachine.add(money: 1000)
-        case 5000: balance = vendingMachine.add(money: 5000)
+        case 1000: balance = vendingMachine2.add(money: 1000)
+        case 5000: balance = vendingMachine2.add(money: 5000)
         default:
             print("error!!!!!!")
         }
         
         moneyLabel.text = "잔액 : " + String(balance) + "원"
-        print("돈 추가 : " + String(vendingMachine.balance))
+        print("돈 추가 : " + String(vendingMachine2.balance))
     }
     
     func catchNotification(notification:Notification) -> Void {
         print("Catch notification")
         
-        if let foodList = notification.object as? [String : Int] ?? nil {
-            for (foodName, capacity) in foodList {
-                switch foodName {
-                case chickenName: capacityLabel[0].text = String(capacity)+"개"
-                case pizzaName: capacityLabel[1].text = String(capacity)+"개"
-                case bossamName: capacityLabel[2].text = String(capacity)+"개"
-                case hambugerName: capacityLabel[3].text = String(capacity)+"개"
-                case dduckppokkiName: capacityLabel[4].text = String(capacity)+"개"
-                default:
-                    print("error!!!!!!")
-                }
+        if let foodList = notification.object as? [Int : Int] ?? nil {
+            for (menu, capacity) in foodList {
+                capacityLabel[menu-1].text = String(capacity)+"개"
             }
         }
     }
