@@ -62,6 +62,7 @@ class AddViewController: UIViewController {
                        selector: #selector(catchNotification),
                        name: nc,
                        object: nil)
+   
     }
     
     func initView() {
@@ -75,7 +76,7 @@ class AddViewController: UIViewController {
         for (foodName, _) in vendingMachine.getBuyList() {
             print(foodName)
             purchaseImageFoodName = foodName
-            viewWillAppear(true)
+//            viewWillAppear(true)
         }
         
         for (foodName, capacity) in vendingMachine.getMenuList() {
@@ -99,6 +100,14 @@ class AddViewController: UIViewController {
         }
     }
     
+    func test() {
+        if let imageview = makeImageView(x: purchaseImageXPoint, y: 575) {
+            self.view.addSubview(imageview)
+            purchaseImageXPoint += 50
+            purchaseImageFoodName = nil
+        }
+    }
+    
     //호출을 appdelegate에서 했더니 안된다.
     override func viewWillDisappear(_ animated: Bool) {
         let data = NSKeyedArchiver.archivedData(withRootObject: vendingMachine)
@@ -114,11 +123,19 @@ class AddViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        if let imageview = makeImageView(x: purchaseImageXPoint, y: 575) {
-            self.view.addSubview(imageview)
-            purchaseImageXPoint += 50
-            purchaseImageFoodName = nil
-        }
+//        if let imageview = makeImageView(x: purchaseImageXPoint, y: 575) {
+//            self.view.addSubview(imageview)
+//            purchaseImageXPoint += 50
+//            purchaseImageFoodName = nil
+//        }
+//
+//        super.viewWillAppear(animated)
+//        test()
+        print(#function)
+    }
+
+    override var shouldAutomaticallyForwardAppearanceMethods: Bool {
+        return false
     }
     
     func makeImageView(x: Int, y: Int) -> UIView? {
@@ -185,7 +202,12 @@ class AddViewController: UIViewController {
         if balance > 0 {
             moneyLabel.text = "잔액 : " + String(balance)
             purchaseImageFoodName = foodName
-            viewWillAppear(true)
+            if let imageview = makeImageView(x: purchaseImageXPoint, y: 575) {
+                self.view.addSubview(imageview)
+                purchaseImageXPoint += 50
+                purchaseImageFoodName = nil
+            }
+//            viewWillAppear(true)
         }else if balance == -2 {
             moneyLabel.text = foodName + " 재고부족"
         }else {

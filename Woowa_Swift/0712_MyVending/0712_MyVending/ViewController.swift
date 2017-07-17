@@ -14,6 +14,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print(#function)
         // Do any additional setup after loading the view, typically from a nib.
 //        
 //        let chicken = Chicken(restaurant: "굽네치킨", capacity: 0, price: 10000, name: "고추바사삭", manufacturingDate: Date(),bone: true)
