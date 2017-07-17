@@ -181,3 +181,129 @@ func lengthConverter(input: Double) -> Measurement<UnitLength> {
 }
 
 print(lengthConverter(input: 20.0).description)
+
+
+//: Playground - noun: a place where people can play
+
+import UIKit
+import Foundation
+
+var str = "Hello, playground"
+
+//다른걸 기대하는 경우가 있으므로 operator 띄어쓰기 해줘야 한다.
+1 + 2
+12 - 34
+5 * 6
+78 / 9
+10 % 3
+
+var 한글 = "한글"
+print(한글)
+
+//예제1) 두 점 사이의 거리를 실수로 계산하는 함수
+func distance(ax: Int, ay: Int, bx: Int, by: Int) -> Float {
+    let x_difference = ax - bx
+    let y_difference = ay - by
+    
+    let result: Float = pow(Float(x_difference),2) + pow(Float(y_difference),2)
+    //let result2 = (x_difference * x_difference) + ( y_difference * y_difference )
+    
+    return result.squareRoot()
+}
+
+print(distance(ax: 3, ay: 4, bx: 0, by: 0))
+print(distance(ax: 1, ay: 1, bx: 5, by: 6))
+
+//예제2) 예제1을 튜플로 받아라
+typealias Point = (x: Int,y: Int)
+func distance2(a: Point, b: Point) -> Double {
+    let x_difference = a.x - b.x
+    let y_difference = a.y - b.y
+    
+    let result = pow(Double(x_difference),2) + pow(Double(y_difference), 2)
+    
+    return result.squareRoot()
+}
+
+print(distance2(a: (1,1), b: (5,6)))
+let a_point: Point = (3,4)
+let b_point = (0,0)
+print(distance2(a: a_point, b: b_point))
+
+//예제3) 문자열 년도월일을 입력받아 만 나이 구하기
+func age(_ from: String) -> Int {
+    let now = NSDate()
+    print(now)
+    
+    //let now_year = Int(now.substring(to: now.index(now.startIndex, offsetBy: ))
+    
+    var age: Int = 0
+    
+    let end_index = from.index(from.startIndex, offsetBy: 2)
+    var year = Int(from.substring(to: end_index))
+    if year != nil {
+        year! += 1900
+        age = 2017 - year!
+    }
+    
+    let str_index = from.index(from.startIndex, offsetBy: 2)
+    let birth = Int(from.substring(from: str_index))
+    
+    if birth != nil {
+        if birth! > 0710 {
+            age -= 1
+        }
+    }
+    
+    return age
+}
+
+age("940529")
+
+/*
+ 예제4)
+ 리스트의 원소 값은 다음 리스트의 위치를 가르킨다.
+ 원소의 값이 음수가 나오면 행동을 멈춘다.
+ */
+
+//전체 리스트를 탐방하며 프린트 하기
+func enumerateList(_ A: [Int]) {
+    var index = 0
+    while index >= 0 {
+        print(A[index])
+        index = A[index]
+    }
+}
+enumerateList([1,4,-1,3,2])
+enumerateList([5,4,3,-1,2,1])
+
+//위의 원칙대로 실행했을 경우 완성되는 리스트의 길이 출력하기
+func countOfList(_ A: [Int]) -> Int {
+    var count = 0
+    var index = 0
+    while index >= 0 {
+        index = A[index]
+        count += 1
+    }
+    return count
+}
+print(countOfList([1,4,-1,3,2]))
+print(countOfList([5,4,3,-1,2,1]))
+
+//위의 원칙대로 실행했을 경우 입력 배열의 모든 원소를 확인하는 경우 true, 하나라도 없는 경우 false
+func isFullList(_ A: [Int]) -> Bool {
+    var result = true
+    if A.count > countOfList(A) {
+        result = false
+    }
+    return result
+}
+print(isFullList([1,4,-1,3,2]))
+print(isFullList([5,4,3,-1,2,1]))
+
+//예제5) 입력 받은 Array중 2,3의 배수를 골라서 골라진 수에 각 5씩 곱한 후 모든 합산 값을 리턴하라.
+func complex(from array: [Int]) -> Int {
+    return array.filter({ $0 % 2 == 0 || $0 % 3 == 0 }).map({ $0 * 5 }).reduce(0, { $0 + $1 })
+}
+print(complex(from: [1,2,3]))
+print(complex(from: [1,2,3,6]))

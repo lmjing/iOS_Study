@@ -11,7 +11,7 @@ import UIKit
 class ViewController: UIViewController {
 
     //var vendingMachine = FoodVendingMachine()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         print(#function)
@@ -61,6 +61,4 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-
 }
-
