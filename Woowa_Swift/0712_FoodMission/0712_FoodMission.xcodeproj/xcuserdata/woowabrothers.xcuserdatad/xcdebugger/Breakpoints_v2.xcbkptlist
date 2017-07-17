@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "0712_FoodMission/Food.swift"
+            timestampString = "521514809.584241"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "11"
+            endingLineNumber = "11"
+            landmarkName = "Food"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "_712_FoodMission.Food.__deallocating_deinit"
+                  moduleName = "0712_FoodMission"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/woowabrothers/Desktop/Baemin/iOS/iOS_Study/Woowa_Swift/0712_FoodMission/0712_FoodMission/Food.swift"
+                  timestampString = "521535842.256307"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "4">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "_712_FoodMission.Food.deinit"
+                  moduleName = "0712_FoodMission"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/woowabrothers/Desktop/Baemin/iOS/iOS_Study/Woowa_Swift/0712_FoodMission/0712_FoodMission/Food.swift"
+                  timestampString = "521535842.258658"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "4">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "0712_FoodMission/FoodVendingMachine.swift"
+            timestampString = "521526637.689162"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "14"
+            endingLineNumber = "14"
+            landmarkName = "FoodVendingMachine"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "_712_FoodMission.FoodVendingMachine.(menuList : Swift.Dictionary&lt;Swift.String, _712_FoodMission.Food&gt;).(variable initialization expression)"
+                  moduleName = "0712_FoodMission"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/woowabrothers/Desktop/Baemin/iOS/iOS_Study/Woowa_Swift/0712_FoodMission/0712_FoodMission/FoodVendingMachine.swift"
+                  timestampString = "521518871.677915"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "12"
+                  endingLineNumber = "12"
+                  offsetFromSymbolStart = "4">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "_712_FoodMission.FoodVendingMachine.menuList.getter : Swift.Dictionary&lt;Swift.String, _712_FoodMission.Food&gt;"
+                  moduleName = "0712_FoodMission"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/woowabrothers/Desktop/Baemin/iOS/iOS_Study/Woowa_Swift/0712_FoodMission/0712_FoodMission/FoodVendingMachine.swift"
+                  timestampString = "521518871.67947"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "12"
+                  endingLineNumber = "12"
+                  offsetFromSymbolStart = "25">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "_712_FoodMission.FoodVendingMachine.menuList.setter : Swift.Dictionary&lt;Swift.String, _712_FoodMission.Food&gt;"
+                  moduleName = "0712_FoodMission"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/woowabrothers/Desktop/Baemin/iOS/iOS_Study/Woowa_Swift/0712_FoodMission/0712_FoodMission/FoodVendingMachine.swift"
+                  timestampString = "521518871.680877"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "12"
+                  endingLineNumber = "12"
+                  offsetFromSymbolStart = "50">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "_712_FoodMission.FoodVendingMachine.init () -&gt; _712_FoodMission.FoodVendingMachine"
+                  moduleName = "0712_FoodMission"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/woowabrothers/Desktop/Baemin/iOS/iOS_Study/Woowa_Swift/0712_FoodMission/0712_FoodMission/FoodVendingMachine.swift"
+                  timestampString = "521518871.682258"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "12"
+                  endingLineNumber = "12"
+                  offsetFromSymbolStart = "4">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "0712_FoodMission/FoodVendingMachine.swift"
+            timestampString = "521526637.689162"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "30"
+            endingLineNumber = "30"
+            landmarkName = "add(food:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "0712_FoodMission/Food.swift"
+            timestampString = "521532165.77891"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "109"
+            endingLineNumber = "109"
+            landmarkName = "init(restaurant:capacity:price:name:manufacturingDate:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "0712_FoodMission/FoodVendingMachine.swift"
+            timestampString = "521526637.689162"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "31"
+            endingLineNumber = "31"
+            landmarkName = "add(food:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
