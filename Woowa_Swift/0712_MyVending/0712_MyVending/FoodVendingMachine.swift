@@ -9,7 +9,6 @@
 import Foundation
 
 class FoodVendingMachine: NSObject, NSCoding {
-
     static var instance = FoodVendingMachine()
     var menuList: [String:Food]
     var buyList: [String:Int]
@@ -21,7 +20,7 @@ class FoodVendingMachine: NSObject, NSCoding {
         buyList = [:]
         balance = 0
     }
-
+    
     required init?(coder aDecoder: NSCoder) {
         menuList = aDecoder.decodeObject(forKey: "menuList") as! [String:Food]
         buyList = aDecoder.decodeObject(forKey: "buyList") as! [String:Int]
