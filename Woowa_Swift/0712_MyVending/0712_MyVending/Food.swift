@@ -22,7 +22,7 @@ class Food: NSObject, NSCoding {
         self.name = name
         self.manufacturingDate = manufacturingDate
     }
-    
+
     override init() {
         restaurant = ""
         capacity = 0
@@ -30,7 +30,7 @@ class Food: NSObject, NSCoding {
         name = ""
         manufacturingDate = Date()
     }
-    
+
     func encode(with aCoder: NSCoder) {
         aCoder.encode(restaurant, forKey: "restaurant")
         aCoder.encode(capacity, forKey: "capacity")
@@ -38,7 +38,7 @@ class Food: NSObject, NSCoding {
         aCoder.encode(name, forKey: "name")
         aCoder.encode(manufacturingDate, forKey: "manufacturingDate")
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         restaurant = aDecoder.decodeObject(forKey: "restaurant") as! String
         capacity = aDecoder.decodeInteger(forKey: "capacity")
@@ -50,17 +50,17 @@ class Food: NSObject, NSCoding {
 
 class Chicken: Food {
     var bone: Bool
-    
+
     init(restaurant: String, capacity: Int, price: Int, name: String, manufacturingDate: Date, bone: Bool) {
         self.bone = bone
         super.init(restaurant: restaurant, capacity: capacity, price: price, name: name, manufacturingDate: manufacturingDate)
     }
-    
+
     override func encode(with aCoder: NSCoder) {
         aCoder.encode(bone, forKey: "bone")
         super.encode(with: aCoder)
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         bone = aDecoder.decodeBool(forKey: "bone")
         super.init(coder: aDecoder)
@@ -69,17 +69,17 @@ class Chicken: Food {
 
 class Pizza: Food {
     var cheeseCrust: Bool
-    
+
     init(restaurant: String, capacity: Int, price: Int, name: String, manufacturingDate: Date, cheeseCrust: Bool) {
         self.cheeseCrust = cheeseCrust
         super.init(restaurant: restaurant, capacity: capacity, price: price, name: name, manufacturingDate: manufacturingDate)
     }
-    
+
     override func encode(with aCoder: NSCoder) {
         aCoder.encode(cheeseCrust, forKey: "cheeseCrust")
         super.encode(with: aCoder)
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         cheeseCrust = aDecoder.decodeBool(forKey: "cheeseCrust")
         super.init(coder: aDecoder)
@@ -88,17 +88,17 @@ class Pizza: Food {
 
 class Bossam: Food {
     var noodle: Bool
-    
+
     init(restaurant: String, capacity: Int, price: Int, name: String, manufacturingDate: Date, noodle: Bool) {
         self.noodle = noodle
         super.init(restaurant: restaurant, capacity: capacity, price: price, name: name, manufacturingDate: manufacturingDate)
     }
-    
+
     override func encode(with aCoder: NSCoder) {
         aCoder.encode(noodle, forKey: "noodle")
         super.encode(with: aCoder)
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         noodle = aDecoder.decodeBool(forKey: "noodle")
         super.init(coder: aDecoder)
@@ -106,15 +106,15 @@ class Bossam: Food {
 }
 
 class Hambuger: Food {
-    
+
     override init(restaurant: String, capacity: Int, price: Int, name: String, manufacturingDate: Date) {
         super.init(restaurant: restaurant, capacity: capacity, price: price, name: name, manufacturingDate: manufacturingDate)
     }
-    
+
     override func encode(with aCoder: NSCoder) {
         super.encode(with: aCoder)
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
@@ -125,17 +125,17 @@ class Dduckppokki: Food {
         case low = 0, mid, high
     }
     let spicy: Spicy
-    
+
     init(restaurant: String, capacity: Int, price: Int, name: String, manufacturingDate: Date, spicy: Spicy) {
         self.spicy = spicy
         super.init(restaurant: restaurant, capacity: capacity, price: price, name: name, manufacturingDate: manufacturingDate)
     }
-    
+
     override func encode(with aCoder: NSCoder) {
         aCoder.encode(spicy.rawValue, forKey: "spicy")
         super.encode(with: aCoder)
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         spicy = Dduckppokki.Spicy(rawValue: Int(aDecoder.decodeCInt(forKey: "spicy")))!
         super.init(coder: aDecoder)
