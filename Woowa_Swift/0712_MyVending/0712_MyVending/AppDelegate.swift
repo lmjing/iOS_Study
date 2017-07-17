@@ -15,22 +15,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-//        let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
-//        let vc = mainStoryboard.instantiateViewController(withIdentifier: "addViewController") as! AddViewController
-//        // Override point for customization after application launch.
-//        
-//        let loadData = UserDefaults.standard.data(forKey: "vendingMachine")
-//        if let data = loadData {
-//            let test = NSKeyedUnarchiver.unarchiveObject(with: data)
-//            vc.vendingMachine = test as! FoodVendingMachine
-//            print("appdelegate" + String(vc.vendingMachine.balance))
-//        }
         let loadData = UserDefaults.standard.data(forKey: "vendingMachine")
         if let data = loadData {
             let test = NSKeyedUnarchiver.unarchiveObject(with: data)
             FoodVendingMachine.instance = test as! FoodVendingMachine
-            print("appdelegate" + String(FoodVendingMachine.instance.balance))
         }
+        let loadData2 = UserDefaults.standard.data(forKey: "vendingMachine2")
+        if let data = loadData2 {
+            let test = NSKeyedUnarchiver.unarchiveObject(with: data)
+            FoodVendingMachine2.instance = test as! FoodVendingMachine2
+        }
+
         
         return true
     }
@@ -45,18 +40,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
         
-//        let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
-//        let vc = mainStoryboard.instantiateViewController(withIdentifier: "addViewController") as! AddViewController
-//        let data = NSKeyedArchiver.archivedData(withRootObject: vc.vendingMachine)
-//        UserDefaults.standard.set(data, forKey: "vendingMachine")
-//        
-//        print("bye, saved : " + String(vc.vendingMachine.balance))
-//        print(vc.purchaseImageXPoint)
         let data = NSKeyedArchiver.archivedData(withRootObject: FoodVendingMachine.instance)
         UserDefaults.standard.set(data, forKey: "vendingMachine")
-
         
-        print("bye, saved : " + String(FoodVendingMachine.instance.balance))
+        let data2 = NSKeyedArchiver.archivedData(withRootObject: FoodVendingMachine2.instance)
+        UserDefaults.standard.set(data2, forKey: "vendingMachine2")
+
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {

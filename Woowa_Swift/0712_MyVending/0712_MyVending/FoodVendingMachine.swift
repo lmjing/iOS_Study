@@ -8,10 +8,6 @@
 
 import Foundation
 
-let userDefault = UserDefaults.standard
-let center = NotificationCenter.default
-let nc = Notification.Name("NotificationIdentifier")
-
 class FoodVendingMachine: NSObject, NSCoding {
     
     static var instance = FoodVendingMachine()
@@ -55,13 +51,11 @@ class FoodVendingMachine: NSObject, NSCoding {
             print(exist.capacity, "exist.capacity")
             print(food.capacity, "food.capacity")
             
-            // Post notification
-            center.post(name: nc, object: getMenuList())
         }else {
             menuList[foodName] = food
             print(foodName + "추가")
-            center.post(name: nc, object: getMenuList())
         }
+        NotificationCenter.default.post(name: Notification.Name("NotificationIdentifier"), object: getMenuList())
     }
     
     func getMenuList() -> [String : Int] {

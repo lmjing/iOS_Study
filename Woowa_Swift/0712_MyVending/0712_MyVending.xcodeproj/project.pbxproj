@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		50C771DB1F1B26C700C9066A /* FoodVendingMachine2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C771DA1F1B26C700C9066A /* FoodVendingMachine2.swift */; };
+		50C771DD1F1B3A6A00C9066A /* AddViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C771DC1F1B3A6A00C9066A /* AddViewController2.swift */; };
 		98034B5D1F16011600452E38 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98034B5C1F16011600452E38 /* AppDelegate.swift */; };
 		98034B5F1F16011600452E38 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98034B5E1F16011600452E38 /* ViewController.swift */; };
 		98034B621F16011600452E38 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 98034B601F16011600452E38 /* Main.storyboard */; };
@@ -18,6 +20,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		50C771DA1F1B26C700C9066A /* FoodVendingMachine2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodVendingMachine2.swift; sourceTree = "<group>"; };
+		50C771DC1F1B3A6A00C9066A /* AddViewController2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddViewController2.swift; sourceTree = "<group>"; };
 		98034B591F16011600452E38 /* 0712_MyVending.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 0712_MyVending.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		98034B5C1F16011600452E38 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		98034B5E1F16011600452E38 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -62,6 +66,7 @@
 			children = (
 				98034B6E1F1601EF00452E38 /* Food.swift */,
 				98034B6F1F1601EF00452E38 /* FoodVendingMachine.swift */,
+				50C771DA1F1B26C700C9066A /* FoodVendingMachine2.swift */,
 				98034B5C1F16011600452E38 /* AppDelegate.swift */,
 				98034B5E1F16011600452E38 /* ViewController.swift */,
 				98034B601F16011600452E38 /* Main.storyboard */,
@@ -69,6 +74,7 @@
 				98034B651F16011600452E38 /* LaunchScreen.storyboard */,
 				98034B681F16011600452E38 /* Info.plist */,
 				98034B7C1F16378D00452E38 /* AddViewController.swift */,
+				50C771DC1F1B3A6A00C9066A /* AddViewController2.swift */,
 			);
 			path = 0712_MyVending;
 			sourceTree = "<group>";
@@ -145,10 +151,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50C771DD1F1B3A6A00C9066A /* AddViewController2.swift in Sources */,
 				98034B7D1F16378D00452E38 /* AddViewController.swift in Sources */,
 				98034B5F1F16011600452E38 /* ViewController.swift in Sources */,
 				98034B5D1F16011600452E38 /* AppDelegate.swift in Sources */,
 				98034B701F1601EF00452E38 /* Food.swift in Sources */,
+				50C771DB1F1B26C700C9066A /* FoodVendingMachine2.swift in Sources */,
 				98034B711F1601EF00452E38 /* FoodVendingMachine.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -273,6 +281,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = 0712_MyVending/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.lmjing.-712-MyVending";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -286,6 +295,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = 0712_MyVending/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.lmjing.-712-MyVending";
 				PRODUCT_NAME = "$(TARGET_NAME)";
