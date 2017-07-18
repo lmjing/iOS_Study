@@ -8,8 +8,6 @@
 
 import Foundation
 
-//문자열보다 enum타입으로 쓸 것
-//enum타입은 빠진게 있는지 없는지 확인해주기 때문에 실수할 일도 적다.
 enum Menu: Int {
     case chicken = 1, pizza, bossam, haumbuger, dduckppokki
 }
@@ -17,26 +15,25 @@ enum Menu: Int {
 class FoodVendingMachine2: NSObject, NSCoding {
 
     static var instance = FoodVendingMachine2()
-    var menuList: [Int:[String:Food]]
-    var buyList: [Int:Int]
+    var menuDic: [Int:[String:Food]]
+    var buyDic: [Int:Int]
     var balance: Int
 
     private override init() {
-        print("호출2")
-        menuList = [:]
-        buyList = [:]
+        menuDic = [:]
+        buyDic = [:]
         balance = 0
     }
 
     required init?(coder aDecoder: NSCoder) {
-        menuList = aDecoder.decodeObject(forKey: "menuList") as! [Int:[String:Food]]
-        buyList = aDecoder.decodeObject(forKey: "buyList") as! [Int:Int]
+        menuDic = aDecoder.decodeObject(forKey: "menuList") as! [Int:[String:Food]]
+        buyDic = aDecoder.decodeObject(forKey: "buyList") as! [Int:Int]
         balance = aDecoder.decodeInteger(forKey: "balance")
     }
 
     func encode(with aCoder: NSCoder) {
-        aCoder.encode(menuList, forKey: "menuList")
-        aCoder.encode(buyList, forKey: "buyList")
+        aCoder.encode(menuDic, forKey: "menuList")
+        aCoder.encode(buyDic, forKey: "buyList")
         aCoder.encode(balance, forKey: "balance")
     }
 
@@ -50,7 +47,7 @@ class FoodVendingMachine2: NSObject, NSCoding {
     func getAllCapcityList() -> [Int : Int] {
         var result: [Int : Int] = [:]
 
-        for (menu, foodlist) in menuList {
+        for (menu, foodlist) in menuDic {
             var allOfCapcity = 0
             for (_, food) in foodlist {
                 allOfCapcity += food.capacity
@@ -65,7 +62,7 @@ class FoodVendingMachine2: NSObject, NSCoding {
         let foodName = food.restaurant + "-" + food.name
 
         if let menu = type {
-            if var existMenu = menuList[menu.rawValue] {
+            if var existMenu = menuDic[menu.rawValue] {
                 if let existFood = existMenu[foodName] {
                     existFood.capacity += existFood.capacity
                 } else {
@@ -74,7 +71,7 @@ class FoodVendingMachine2: NSObject, NSCoding {
             } else {
                 var appendFood = [String: Food]()
                 appendFood[foodName] = food
-                menuList[menu.rawValue] = appendFood
+                menuDic[menu.rawValue] = appendFood
             }
 
             NotificationCenter.default.post(name: Notification.Name("NotificationIdentifier2"), object: getAllCapcityList())
@@ -84,7 +81,7 @@ class FoodVendingMachine2: NSObject, NSCoding {
     func getAvailablePurchaseFood(money: Int) -> [Food] {
         var result = [Food]()
 
-        for (_, foodlist) in menuList {
+        for (_, foodlist) in menuDic {
             for (_, food) in foodlist {
                 if(food.price <= money && food.capacity > 0) {
                     result.append(food)
@@ -117,11 +114,11 @@ class FoodVendingMachine2: NSObject, NSCoding {
 //            return -3
 //        }
 
-        if let exist = menuList[menu]?.first?.value {
+        if let exist = menuDic[menu]?.first?.value {
             if (exist.price) < balance {
                 balance -= exist.price
                 exist.capacity -= 1
-                buyList[menu] = exist.price
+                buyDic[menu] = exist.price
                 return balance
             } else {
                 print("금액이 부족합니다. 돈을 더 넣어주세요 :)")
@@ -156,6 +153,6 @@ class FoodVendingMachine2: NSObject, NSCoding {
 
     //그냥 String배열로 리턴
     func getBuyList() -> [Int:Int] {
-        return buyList
+        return buyDic
     }
 }

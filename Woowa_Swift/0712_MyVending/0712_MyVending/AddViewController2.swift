@@ -202,7 +202,7 @@ extension AddViewController2: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         var result = 0
-        if let count = vendingMachine2.menuList[tableView.tag]?.count {
+        if let count = vendingMachine2.menuDic[tableView.tag]?.count {
             result = count
         }
         return result
@@ -211,7 +211,7 @@ extension AddViewController2: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        let titleList: [String] = Array(vendingMachine2.menuList[tableView.tag]!.keys)
+        let titleList: [String] = Array(vendingMachine2.menuDic[tableView.tag]!.keys)
 
         cell.textLabel?.text = titleList[indexPath.row]
         cell.textLabel?.font = UIFont(name: (cell.textLabel?.font.fontName)!, size: 15)
