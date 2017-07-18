@@ -59,7 +59,8 @@ extension AddressMainViewController : UITableViewDataSource, UITableViewDelegate
     }
 
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return nameArray[section].first!.key
+        
+        return nameArray[section].first?.key
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -79,6 +80,9 @@ extension AddressMainViewController : UITableViewDataSource, UITableViewDelegate
         if editingStyle == .delete {
             guard let key = nameArray[indexPath.section].keys.first else { return }
             nameArray[indexPath.section][key]?.remove(at: indexPath.row)
+            if nameArray[indexPath.section][key]?.count == 0 {
+                nameArray.remove(at: indexPath.section)
+            }
             //reloadData를 호출하면 delegate가 자동으로 호출되어 갱신된다
             //reloadData는 CollectionView에서 데이터 변경 후 호출해주면 된다.
             tableView.reloadData()

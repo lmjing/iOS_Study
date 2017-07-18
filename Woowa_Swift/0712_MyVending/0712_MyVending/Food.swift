@@ -8,12 +8,24 @@
 
 import Foundation
 
-class Food: NSObject, NSCoding {
+protocol Equatable {
+    static func ==(lhs: Self, rhs: Self) -> Bool
+}
+
+class Food: NSObject, NSCoding, Equatable {
     let restaurant: String
     var capacity: Int
     var price: Int
     let name: String
     let manufacturingDate: Date
+    
+    static func ==(lhs: Food, rhs: Food) -> Bool {
+        if lhs.name == rhs.name && lhs.restaurant == rhs.restaurant {
+            return true
+        }else {
+            return false
+        }
+    }
 
     init(restaurant: String, capacity: Int, price: Int, name: String, manufacturingDate: Date) {
         self.restaurant = restaurant

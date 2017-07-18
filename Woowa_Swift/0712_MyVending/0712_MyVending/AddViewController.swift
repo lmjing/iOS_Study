@@ -125,10 +125,6 @@ class AddViewController: UIViewController {
         }
     }
 
-    @objc public func locationUpdated(notification: Notification) {
-        //Do something
-    }
-
     func btnPressed(_ btn: UIButton) {
 
         var food: Food
