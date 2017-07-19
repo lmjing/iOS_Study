@@ -30,12 +30,12 @@
                                         <rect key="frame" x="0.0" y="28" width="414" height="128"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rSd-tR-pHQ" id="eAw-15-foV">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="127.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="127.66666666666667"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" restorationIdentifier="bgImgView" translatesAutoresizingMaskIntoConstraints="NO" id="ppx-Bb-UWL">
-                                                    <rect key="frame" x="14" y="14" width="109" height="106"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" restorationIdentifier="bgImgView" translatesAutoresizingMaskIntoConstraints="NO" id="ppx-Bb-UWL">
+                                                    <rect key="frame" x="14" y="14" width="100" height="100"/>
+                                                    <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" restorationIdentifier="titleLabel" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="djM-um-d4G">
                                                     <rect key="frame" x="131" y="15" width="236" height="21"/>
@@ -52,6 +52,10 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="ppx-Bb-UWL" firstAttribute="centerY" secondItem="eAw-15-foV" secondAttribute="centerY" id="HHw-M8-DVL"/>
+                                                <constraint firstItem="ppx-Bb-UWL" firstAttribute="centerY" secondItem="eAw-15-foV" secondAttribute="centerY" id="OoT-fh-fwj"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="bgImgView" destination="ppx-Bb-UWL" id="mED-Q4-mBX"/>

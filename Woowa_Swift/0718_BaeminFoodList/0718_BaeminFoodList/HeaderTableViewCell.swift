@@ -10,15 +10,23 @@ import UIKit
 
 class HeaderTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        
+        titleLabel.frame = CGRect(x: 0, y: 50, width: 30, height: 30)
+        titleLabel.center.x = contentView.center.x
+        titleLabel.layer.borderWidth = 2
+        titleLabel.layer.borderColor = UIColor.lightGray.cgColor
+        titleLabel.textColor = UIColor.lightGray
+        
+        descriptionLabel.frame = CGRect(x: 0, y: 150, width: 100, height: 30)
+        descriptionLabel.center.x = contentView.center.x
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
-    
 }
