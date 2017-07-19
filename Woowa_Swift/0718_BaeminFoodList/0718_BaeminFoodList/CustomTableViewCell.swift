@@ -25,7 +25,6 @@ class CustomTableViewCell: UITableViewCell {
         titleLabel.font = UIFont(name: "HelveticaNeue-Bold", size: 15)
         descriptionLabel.font = UIFont(name: "Avenir", size: 13)
         descriptionLabel.textColor = UIColor.darkGray
-        bgImgView.center.y = center.y
     }
     
     func makePriceLabel(salePrice: String, normalPrice: String?) {

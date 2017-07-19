@@ -19,6 +19,14 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if DataTask().isConnectedToInternet() == true {
+            view.layer.borderColor = UIColor(red: 173/255, green: 243/255, blue: 125/255, alpha: 1).cgColor
+            view.layer.borderWidth = 2
+        }else {
+            view.layer.borderColor = UIColor(red: 255/255, green: 111/255, blue: 100/255, alpha: 1).cgColor
+            view.layer.borderWidth = 2
+        }
+        
         tableView.delegate = self
         tableView.dataSource = self
         
