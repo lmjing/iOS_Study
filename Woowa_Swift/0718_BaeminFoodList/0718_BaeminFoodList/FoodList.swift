@@ -8,12 +8,15 @@
 
 import Foundation
 
-class Food {
+class FoodList {
+    static let instance = FoodList()
+    
     enum FoodType: Int {
         case Main = 0, Soup = 1, Course = 2 , Side = 3
     }
-    
     let typeList = ["main","soup","course","side"]
+    
+    var data = [Int : [[String:Any]]]()
     let headerDic: [FoodType.RawValue:(String,String)] = [
         FoodType.Main.rawValue : ("메인반찬","담기만 하면 완성되는 메인반찬"),
         FoodType.Soup.rawValue : ("국・찌개","김이 모락모락 국・찌개"),
@@ -22,12 +25,15 @@ class Food {
     ]
     public private(set) var jsonSectionArray = [String:[[String:Any]]]()
     
-    init() {
+    func getDataFromURL(){
         for type in typeList {
-            jsonSectionArray[type] = readJson(fileName: type)
+            DataTask().getCall(input_url: type, completionHandler: { (complete:[[String:Any]]) in
+                self.jsonSectionArray[type] = complete
+                print("foodInfo")
+                NotificationCenter.default.post(name: NSNotification.Name("init"), object: self, userInfo: ["result":complete])
+            })
         }
     }
-    
     func getHeaderDic(type: FoodType.RawValue) -> (title: String, description: String) {
         return (title: headerDic[type]!.0, description: headerDic[type]!.1)
     }

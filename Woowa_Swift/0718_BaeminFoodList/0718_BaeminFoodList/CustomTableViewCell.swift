@@ -36,8 +36,6 @@ class CustomTableViewCell: UITableViewCell {
             salePriceLabel = UILabel(frame: CGRect(x: labeStartXPoint+60, y: 65, width: 100, height: 25))
             normalPriceLable = UILabel(frame: CGRect(x: labeStartXPoint, y: 65, width: 60, height: 25))
             normalPriceLable.textColor = UIColor.lightGray
-//            normalPriceLable.font = UIFont(name: "Avenir", size: 15)
-//            normalPriceLable.text = normalPrice
             
             let attributedText = NSMutableAttributedString(string: normalPrice!)
             attributedText.addAttributes([NSStrikethroughStyleAttributeName: 2], range: NSMakeRange(0, normalPrice!.characters.count))

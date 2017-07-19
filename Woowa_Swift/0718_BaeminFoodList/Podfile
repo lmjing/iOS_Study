@@ -7,4 +7,6 @@ target '0718_BaeminFoodList' do
 
   # Pods for 0718_BaeminFoodList
 pod 'Alamofire'
+pod 'AlamofireImage'
+
 end
