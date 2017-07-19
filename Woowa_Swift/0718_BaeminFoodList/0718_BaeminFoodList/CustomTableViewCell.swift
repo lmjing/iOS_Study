@@ -25,10 +25,10 @@ class CustomTableViewCell: UITableViewCell {
         titleLabel.font = UIFont(name: "HelveticaNeue-Bold", size: 15)
         descriptionLabel.font = UIFont(name: "Avenir", size: 13)
         descriptionLabel.textColor = UIColor.darkGray
+        imageView?.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
     }
     
     func makePriceLabel(salePrice: String, normalPrice: String?) {
-        print(#function)
         if normalPrice == nil {
             //가격이 하나만 있는 경우
             salePriceLabel = UILabel(frame: CGRect(x: labeStartXPoint, y: 65, width: 100, height: 25))
@@ -86,7 +86,6 @@ class CustomTableViewCell: UITableViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         
-        print(#function)
         salePriceLabel.removeFromSuperview()
         normalPriceLable.removeFromSuperview()
         for view in badgeLableList { //take all subviews from your view
