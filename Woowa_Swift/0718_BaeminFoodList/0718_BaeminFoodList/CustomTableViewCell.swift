@@ -10,7 +10,7 @@ import UIKit
 
 class CustomTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var bgImgView: UIImageView!
+    @IBOutlet weak var bgImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     var salePriceLabel = UILabel()

@@ -33,11 +33,6 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="128"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" restorationIdentifier="bgImgView" translatesAutoresizingMaskIntoConstraints="NO" id="ppx-Bb-UWL">
-                                                    <rect key="frame" x="20" y="15" width="96" height="99"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
-                                                </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" restorationIdentifier="titleLabel" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="djM-um-d4G">
                                                     <rect key="frame" x="152" y="15" width="197" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -52,12 +47,15 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ARc-ce-biM">
+                                                    <rect key="frame" x="31" y="20.182983682983149" width="90.000000000000057" height="90.000000000000057"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="bgImgView" destination="ppx-Bb-UWL" id="mED-Q4-mBX"/>
+                                            <outlet property="bgImageView" destination="ARc-ce-biM" id="kcb-qM-NbP"/>
                                             <outlet property="descriptionLabel" destination="IC2-If-zXj" id="rDU-E8-lKS"/>
-                                            <outlet property="imageView" destination="ppx-Bb-UWL" id="wXe-mp-wXP"/>
                                             <outlet property="titleLabel" destination="djM-um-d4G" id="2cR-Wa-jzs"/>
                                             <segue destination="Ma3-iQ-Dhu" kind="show" id="aq0-1Y-wrg"/>
                                         </connections>
@@ -79,12 +77,12 @@
         <!--View Controller-->
         <scene sceneID="Xan-sb-1FY">
             <objects>
-                <viewController id="Ma3-iQ-Dhu" sceneMemberID="viewController">
+                <viewController wantsFullScreenLayout="YES" id="Ma3-iQ-Dhu" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="b0c-ha-CSG"/>
                         <viewControllerLayoutGuide type="bottom" id="PGP-5v-AKH"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Kbf-81-Il7">
+                    <view key="view" contentMode="scaleToFill" id="Kbf-81-Il7" customClass="DetailUIView" customModule="_718_BaeminFoodList" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -182,6 +180,9 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <connections>
+                            <outlet property="imageScrollView" destination="DUz-4U-mlq" id="1Xf-do-s5c"/>
+                        </connections>
                     </view>
                     <splitViewDetailSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                 </viewController>

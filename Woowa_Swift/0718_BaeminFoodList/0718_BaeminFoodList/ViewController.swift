@@ -19,9 +19,9 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        DataTask().getDetailData(hash: "HDF73", completionHandler:  { (complete: [String : Any]) in
-            print(complete)
-        })
+//        DataTask().getDetailData(hash: "HDF73", completionHandler:  { (complete: [String : Any]) in
+//            print(complete)
+//        })
         
         if DataTask().isConnectedToInternet() == true {
             view.layer.borderColor = UIColor(red: 173/255, green: 243/255, blue: 125/255, alpha: 1).cgColor
@@ -57,30 +57,13 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let food = (data[indexPath.section]?[indexPath.row])!
+        //구: 이미지 다운 코드
+//        let documentsURL = FileManager.default.urls(for: .cachesDirectory , in: .userDomainMask)[0]
+//        let fileURL = documentsURL.appendingPathComponent(food["detail_hash"] as! String + ".jpg")
+//        let image = UIImage(contentsOfFile: fileURL.path)
 //        
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CustomTableViewCell
-//        cell.titleLabel.text = food["title"] as? String
-//        cell.descriptionLabel.text = food["description"] as? String
-//        
-//        //가격 설정
-//        let sPrice = food["s_price"] as? String
-//        let nPrice = food["n_price"] as? String
-//        cell.makePriceLabel(salePrice: sPrice!, normalPrice: nPrice)
-//        let badgeList = food["badge"] as? [String]
-//        if badgeList != nil {
-//            cell.makebadgeLabel(badge: badgeList!)
-//        }
-//        
-//        //구: 이미지 다운 코드
-////        let documentsURL = FileManager.default.urls(for: .cachesDirectory , in: .userDomainMask)[0]
-////        let fileURL = documentsURL.appendingPathComponent(food["detail_hash"] as! String + ".jpg")
-////        let image = UIImage(contentsOfFile: fileURL.path)
-////        
-////        cell.imageView?.image = image
-////        cell.imageView?.contentMode = UIViewContentMode.scaleAspectFit
-//        let url = URL(string: food["image"] as! String)!
-//        cell.bgImgView.af_setImage(withURL: url)
+//        cell.imageView?.image = image
+//        cell.imageView?.contentMode = UIViewContentMode.scaleAspectFit
         
         let food = foodAllList[indexPath.section].foodList[indexPath.row]
         
@@ -97,7 +80,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         }
         
         let url = URL(string: food.image)!
-        cell.bgImgView.af_setImage(withURL: url)
+        cell.bgImageView.af_setImage(withURL: url)
         
         return cell
     }
@@ -108,11 +91,12 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerString = FoodList().getHeaderDic(type: section)
         let test = Bundle.main.loadNibNamed("HeaderTableViewCell", owner: self, options: nil)?.first as! HeaderTableViewCell
-        test.titleLabel.text = headerString.title
-        test.descriptionLabel.text = headerString.description
-        test.titleLabel.frame = CGRect(x: 0, y: 50, width: headerString.title.characters.count, height: 30)
+        
+        guard let sectionInfo = foodAllList[section].foodType.section else { return test }
+        test.titleLabel.text = sectionInfo.title
+        test.descriptionLabel.text = sectionInfo.description
+        test.titleLabel.frame = CGRect(x: 0, y: 50, width: sectionInfo.title.characters.count, height: 30)
         
         return test
     }

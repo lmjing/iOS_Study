@@ -5,7 +5,7 @@
 //  Created by woowabrothers on 2017. 7. 19..
 //  Copyright © 2017년 woowabrothers. All rights reserved.
 //
-
+ 
 import Foundation
 
 class FoodSection {
@@ -75,6 +75,15 @@ class Food {
     let badge: [String]?
     let image: String
     
+//    let top_image: String
+//    let thumb_images: [String]
+//    let product_description: String
+//    let point: String
+//    let delivery_info: String
+//    let delivery_fee: String
+//    let prices: [String]
+//    let detail_section: [String]
+    
     init(title: Any, description: Any, s_price: Any, n_price: Any?, badge: [Any]?, image: Any) {
         self.title = title as! String
         self.description = description as! String
@@ -97,52 +106,4 @@ class Food {
             self.badge = nil
         }
     }
-//    private var title: String {
-//        set {
-//            self.title = newValue
-//        }
-//        get {
-//            return self.title
-//        }
-//    }
-//    private var description: String {
-//        set {
-//            title = newValue
-//        }
-//        get {
-//            return title
-//        }
-//    }
-//    private var s_price: String {
-//        set {
-//            title = newValue
-//        }
-//        get {
-//            return title
-//        }
-//    }
-//    private var n_price: String {
-//        set {
-//            title = newValue
-//        }
-//        get {
-//            return title
-//        }
-//    }
-//    private var badge: String {
-//        set {
-//            title = newValue
-//        }
-//        get {
-//            return title
-//        }
-//    }
-//    private var image: String {
-//        set {
-//            title = newValue
-//        }
-//        get {
-//            return title
-//        }
-//    }
 }

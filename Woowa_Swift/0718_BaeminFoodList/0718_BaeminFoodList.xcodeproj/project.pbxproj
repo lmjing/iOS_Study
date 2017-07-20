@@ -13,7 +13,6 @@
 		989F07CC1F1D98FC00DF710D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 989F07CB1F1D98FC00DF710D /* Assets.xcassets */; };
 		989F07CF1F1D98FC00DF710D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 989F07CD1F1D98FC00DF710D /* LaunchScreen.storyboard */; };
 		989F07D91F1D9A0600DF710D /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989F07D81F1D9A0600DF710D /* CustomTableViewCell.swift */; };
-		989F07DB1F1D9A2F00DF710D /* FoodList_Last.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989F07DA1F1D9A2F00DF710D /* FoodList_Last.swift */; };
 		989F07DD1F1DA20F00DF710D /* main.json in Resources */ = {isa = PBXBuildFile; fileRef = 989F07DC1F1DA20F00DF710D /* main.json */; };
 		989F07DF1F1DD20A00DF710D /* side.json in Resources */ = {isa = PBXBuildFile; fileRef = 989F07DE1F1DD20A00DF710D /* side.json */; };
 		989F07E11F1DD21300DF710D /* soup.json in Resources */ = {isa = PBXBuildFile; fileRef = 989F07E01F1DD21300DF710D /* soup.json */; };
@@ -22,6 +21,7 @@
 		989F081B1F1E35DB00DF710D /* HeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 989F08191F1E35DB00DF710D /* HeaderTableViewCell.xib */; };
 		98FCF80E1F1F16050022D0F5 /* DataTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98FCF80D1F1F16050022D0F5 /* DataTask.swift */; };
 		98FCF8101F1F55530022D0F5 /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98FCF80F1F1F55530022D0F5 /* Food.swift */; };
+		98FCF8381F203A5E0022D0F5 /* DetailUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98FCF8371F203A5E0022D0F5 /* DetailUIView.swift */; };
 		D73911D0C3B5AE5F261E5B10 /* Pods_0718_BaeminFoodList.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21AA803259840C116A5C8C59 /* Pods_0718_BaeminFoodList.framework */; };
 /* End PBXBuildFile section */
 
@@ -37,7 +37,6 @@
 		989F07CE1F1D98FC00DF710D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		989F07D01F1D98FC00DF710D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		989F07D81F1D9A0600DF710D /* CustomTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
-		989F07DA1F1D9A2F00DF710D /* FoodList_Last.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodList_Last.swift; sourceTree = "<group>"; };
 		989F07DC1F1DA20F00DF710D /* main.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = main.json; sourceTree = "<group>"; };
 		989F07DE1F1DD20A00DF710D /* side.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = side.json; sourceTree = "<group>"; };
 		989F07E01F1DD21300DF710D /* soup.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = soup.json; sourceTree = "<group>"; };
@@ -46,6 +45,7 @@
 		989F08191F1E35DB00DF710D /* HeaderTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HeaderTableViewCell.xib; sourceTree = "<group>"; };
 		98FCF80D1F1F16050022D0F5 /* DataTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataTask.swift; sourceTree = "<group>"; };
 		98FCF80F1F1F55530022D0F5 /* Food.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Food.swift; sourceTree = "<group>"; };
+		98FCF8371F203A5E0022D0F5 /* DetailUIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailUIView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,7 +118,6 @@
 		98FCF8131F1F7DAE0022D0F5 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				989F07DA1F1D9A2F00DF710D /* FoodList_Last.swift */,
 				98FCF80F1F1F55530022D0F5 /* Food.swift */,
 			);
 			name = Model;
@@ -130,6 +129,7 @@
 				989F07D81F1D9A0600DF710D /* CustomTableViewCell.swift */,
 				989F08181F1E35DB00DF710D /* HeaderTableViewCell.swift */,
 				989F08191F1E35DB00DF710D /* HeaderTableViewCell.xib */,
+				98FCF8371F203A5E0022D0F5 /* DetailUIView.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -287,10 +287,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				98FCF8101F1F55530022D0F5 /* Food.swift in Sources */,
+				98FCF8381F203A5E0022D0F5 /* DetailUIView.swift in Sources */,
 				98FCF80E1F1F16050022D0F5 /* DataTask.swift in Sources */,
 				989F07D91F1D9A0600DF710D /* CustomTableViewCell.swift in Sources */,
 				989F081A1F1E35DB00DF710D /* HeaderTableViewCell.swift in Sources */,
-				989F07DB1F1D9A2F00DF710D /* FoodList_Last.swift in Sources */,
 				989F07C71F1D98FC00DF710D /* ViewController.swift in Sources */,
 				989F07C51F1D98FC00DF710D /* AppDelegate.swift in Sources */,
 			);
