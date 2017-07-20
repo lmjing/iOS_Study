@@ -17,7 +17,7 @@ class CustomTableViewCell: UITableViewCell {
     var normalPriceLable = UILabel()
     var badgeLableList = [UILabel]()
     
-    let labeStartXPoint = 131
+    let labeStartXPoint = 152
     
     override func awakeFromNib() {
         super.awakeFromNib()

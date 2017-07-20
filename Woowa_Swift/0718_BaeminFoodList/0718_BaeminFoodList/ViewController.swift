@@ -19,6 +19,10 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        DataTask().getDetailData(hash: "HDF73", completionHandler:  { (complete: [String : Any]) in
+            print(complete)
+        })
+        
         if DataTask().isConnectedToInternet() == true {
             view.layer.borderColor = UIColor(red: 173/255, green: 243/255, blue: 125/255, alpha: 1).cgColor
             view.layer.borderWidth = 2
