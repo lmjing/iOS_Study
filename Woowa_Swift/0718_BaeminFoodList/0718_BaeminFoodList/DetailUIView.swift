@@ -9,10 +9,16 @@
 import UIKit
 
 class DetailUIView: UIView {
-
-    @IBOutlet weak var imageScrollView: UIScrollView!
+    
+    @IBOutlet weak var thumbnailImageView: UIScrollView!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var priceLabel: UILabel!
+    @IBOutlet weak var pointLabel: UILabel!
+    @IBOutlet weak var deliveryInfoLabel: UILabel!
+    @IBOutlet weak var deliveryFeeLabel: UILabel!
+    
     override func draw(_ rect: CGRect) {
-        // Drawing code
-        
+        thumbnailImageView.contentSize = CGSize(width: 1000, height: thumbnailImageView.frame.height)
     }
 }

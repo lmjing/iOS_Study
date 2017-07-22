@@ -19,10 +19,6 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        DataTask().getDetailData(hash: "HDF73", completionHandler:  { (complete: [String : Any]) in
-//            print(complete)
-//        })
-        
         if DataTask().isConnectedToInternet() == true {
             view.layer.borderColor = UIColor(red: 173/255, green: 243/255, blue: 125/255, alpha: 1).cgColor
             view.layer.borderWidth = 2
@@ -99,5 +95,13 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         test.titleLabel.frame = CGRect(x: 0, y: 50, width: sectionInfo.title.characters.count, height: 30)
         
         return test
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let food = foodAllList[indexPath.section].foodList[indexPath.row]
+        
+        let vc = storyboard?.instantiateViewController(withIdentifier: "detailVC") as! DetailViewController;
+        vc.originalFood = food
+        navigationController?.pushViewController(vc, animated: true)
     }
 }

@@ -46,9 +46,8 @@ class FoodSection {
     func getDataFromURL() {
         DataTask().getSectionData(input_url: (foodType.section?.url)!, completionHandler: { (complete:[[String:Any]]) in
             for food in complete {
-                self.foodList.append(Food(title: food["title"], description: food["description"], s_price: food["s_price"], n_price: food["n_price"] ?? nil, badge: food["badge"] as? [Any], image: food["image"]))
+                self.foodList.append(Food(food: food))
             }
-            print("foodInfo")
             NotificationCenter.default.post(name: NSNotification.Name("init"), object: self, userInfo: ["type":self.foodType])
         })
     }
@@ -68,42 +67,75 @@ class FoodAllList {
 }
 
 class Food {
-    let title: String
-    let description: String
-    let s_price: String
-    let n_price: String?
-    let badge: [String]?
-    let image: String
+    var detail_hash: String
+    var title: String
+    var description: String
+    var s_price: String
+    var n_price: String?
+    var badge: [String]?
+    var image: String
     
-//    let top_image: String
-//    let thumb_images: [String]
-//    let product_description: String
-//    let point: String
-//    let delivery_info: String
-//    let delivery_fee: String
-//    let prices: [String]
-//    let detail_section: [String]
-    
-    init(title: Any, description: Any, s_price: Any, n_price: Any?, badge: [Any]?, image: Any) {
-        self.title = title as! String
-        self.description = description as! String
-        self.s_price = s_price as! String
-        self.image = image as! String
+    init(food: [String:Any]) {
+        detail_hash = food["detail_hash"] as! String
+        title = food["title"] as! String
+        description = food["description"] as! String
+        s_price = food["s_price"] as! String
+        image = food["image"] as! String
         
-        if n_price != nil {
-            self.n_price = n_price! as? String
+        if let temp = food["n_price"] {
+            n_price = temp as! String
         }else {
-            self.n_price = nil
+            n_price = nil
         }
         
-        if badge != nil {
-            var temp = [String]()
-            for b in badge! {
-                temp.append(b as! String)
-            }
-            self.badge = temp
+        if let temp = food["badge"] {
+            badge = temp as! [String]
         }else {
-            self.badge = nil
+            badge = nil
         }
+    }
+    
+    init(food: Food) {
+        detail_hash = food.detail_hash
+        title = food.title
+        description = food.description
+        s_price = food.s_price
+        image = food.image
+        
+        if let temp = food.n_price {
+            n_price = temp
+        }else {
+            n_price = nil
+        }
+        
+        if let temp = food.badge {
+            badge = temp
+        }else {
+            badge = nil
+        }
+    }
+}
+
+class DetailFood: Food {
+    let top_image: String
+    let thumb_images: [String]
+    let product_description: String
+    let point: String
+    let delivery_info: String
+    let delivery_fee: String
+    let prices: [String]
+    let detail_section: [String]
+    
+    init(originalFood: Food, detailFood: [String:Any]) {
+        top_image = detailFood["top_image"] as! String
+        thumb_images = detailFood["thumb_images"] as! [String]
+        product_description = detailFood["product_description"] as! String
+        point = detailFood["point"] as! String
+        delivery_info = detailFood["delivery_info"] as! String
+        delivery_fee = detailFood["delivery_fee"] as! String
+        prices = detailFood["prices"] as! [String]
+        detail_section = detailFood["detail_section"] as! [String]
+        
+        super.init(food: originalFood)
     }
 }

@@ -32,11 +32,8 @@ class DataTask {
     
     func getDetailData(hash: String, completionHandler: @escaping ([String:Any]) -> Void) {
         let url = deafaultUrl + "detail/" + hash
-        print(url)
         Alamofire.request(url).responseJSON { response in
-            print("asdfa")
             if let jsonDict = response.result.value as? [String:Any] {
-                print("adsad")
                 let result = jsonDict["data"] as? [String:Any]
                 completionHandler(result!)
             }
