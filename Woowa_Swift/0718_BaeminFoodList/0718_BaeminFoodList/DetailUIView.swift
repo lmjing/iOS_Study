@@ -17,6 +17,8 @@ class DetailUIView: UIView {
     @IBOutlet weak var pointLabel: UILabel!
     @IBOutlet weak var deliveryInfoLabel: UILabel!
     @IBOutlet weak var deliveryFeeLabel: UILabel!
+    @IBOutlet weak var detailImageView: UIView!
+    @IBOutlet weak var scrollView: UIScrollView!
     
     override func draw(_ rect: CGRect) {
         thumbnailImageView.contentSize = CGSize(width: 1000, height: thumbnailImageView.frame.height)

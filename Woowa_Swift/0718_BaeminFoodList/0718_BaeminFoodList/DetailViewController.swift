@@ -37,6 +37,19 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
         detailView.thumbnailImageView.isPagingEnabled = true
         setThumbImageView()
         pageControl.addTarget(self, action: #selector(self.changePage(sender:)), for: UIControlEvents.valueChanged)
+        
+        var imageYPoint = CGFloat(0)
+        for imgUrl in (detailFood?.detail_section)! {
+            let imageView = UIImageView(frame: CGRect(x: 0, y: imageYPoint, width: view.frame.width, height: detailView.detailImageView.frame.height))
+            imageView.af_setImage(withURL: URL(string: imgUrl)!)
+            detailView.detailImageView.addSubview(imageView)
+            imageYPoint += detailView.detailImageView.frame.height
+        }
+        
+        let detailViewHeight = detailView.detailImageView.frame.height * CGFloat(integerLiteral: (detailFood?.detail_section.count)!)
+        detailView.detailImageView.frame = CGRect(x: 0, y: 456, width: view.frame.width, height: detailViewHeight)
+        
+        detailView.scrollView.contentSize = CGSize(width: view.frame.width, height: 456 + detailView.detailImageView.frame.height)
     }
     
     func setThumbImageView() {
