@@ -19,10 +19,6 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        DataTask().getDetailData(hash: "HDF73", completionHandler:  { (complete: [String : Any]) in
-//            print(complete)
-//        })
-        
         if DataTask().isConnectedToInternet() == true {
             view.layer.borderColor = UIColor(red: 173/255, green: 243/255, blue: 125/255, alpha: 1).cgColor
             view.layer.borderWidth = 2
@@ -57,14 +53,6 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        //구: 이미지 다운 코드
-//        let documentsURL = FileManager.default.urls(for: .cachesDirectory , in: .userDomainMask)[0]
-//        let fileURL = documentsURL.appendingPathComponent(food["detail_hash"] as! String + ".jpg")
-//        let image = UIImage(contentsOfFile: fileURL.path)
-//        
-//        cell.imageView?.image = image
-//        cell.imageView?.contentMode = UIViewContentMode.scaleAspectFit
-        
         let food = foodAllList[indexPath.section].foodList[indexPath.row]
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CustomTableViewCell
@@ -96,8 +84,16 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         guard let sectionInfo = foodAllList[section].foodType.section else { return test }
         test.titleLabel.text = sectionInfo.title
         test.descriptionLabel.text = sectionInfo.description
-        test.titleLabel.frame = CGRect(x: 0, y: 50, width: sectionInfo.title.characters.count, height: 30)
+        test.titleLabel.layer.frame = CGRect(x: 0, y: 10, width: sectionInfo.title.characters.count, height: 30)
         
         return test
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let food = foodAllList[indexPath.section].foodList[indexPath.row]
+        
+        let vc = storyboard?.instantiateViewController(withIdentifier: "detailVC") as! DetailViewController;
+        vc.originalFood = food
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
