@@ -16,13 +16,13 @@ class HeaderTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        titleLabel.frame = CGRect(x: 0, y: 50, width: 30, height: 30)
+        titleLabel.frame = CGRect(x: 0, y: 10, width: 30, height: 30)
         titleLabel.center.x = contentView.center.x
         titleLabel.layer.borderWidth = 2
         titleLabel.layer.borderColor = UIColor.lightGray.cgColor
         titleLabel.textColor = UIColor.lightGray
         
-        descriptionLabel.frame = CGRect(x: 0, y: 150, width: 100, height: 30)
+        descriptionLabel.frame = CGRect(x: 0, y: 50, width: 100, height: 30)
         descriptionLabel.center.x = contentView.center.x
     }
 

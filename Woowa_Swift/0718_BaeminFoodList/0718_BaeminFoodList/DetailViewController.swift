@@ -7,8 +7,10 @@
 //
 
 import UIKit
+import Alamofire
+import AlamofireImage
 
-class DetailViewController: UIViewController, UIScrollViewDelegate {
+class DetailViewController: UIViewController {
     
     @IBOutlet var detailView: DetailUIView!
     var detailFood: DetailFood? = nil
@@ -18,38 +20,38 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        DataTask().getDetailData(hash: (originalFood?.detail_hash)!, completionHandler:  { (complete: [String : Any]) in
+        let dataTask = DataTask()
+        dataTask.getDetailData(hash: (originalFood?.detail_hash)!, completionHandler:  { (complete: [String : Any]) in
             self.detailFood = DetailFood(originalFood: self.originalFood!, detailFood: complete)
-            self.initView()
+            self.detailView.detailfood = self.detailFood
+//            dataTask.downloadDetailImage(imageUrls: (self.detailFood?.detail_section)!, hash: (self.detailFood?.detail_hash)!)
         })
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(setDetailImageView), name: NSNotification.Name("detailImage"), object: nil)
     }
     
-    func initView() {
-        detailView.titleLabel.text = detailFood?.title
-        detailView.descriptionLabel.text = detailFood?.description
-        detailView.priceLabel.text = detailFood?.prices[0]
-        detailView.pointLabel.text = detailFood?.point
-        detailView.deliveryFeeLabel.text = detailFood?.delivery_fee
-        detailView.deliveryInfoLabel.text = detailFood?.delivery_info
-        
-        configurePageControl()
-        detailView.thumbnailImageView.delegate = self
-        detailView.thumbnailImageView.isPagingEnabled = true
-        setThumbImageView()
-        pageControl.addTarget(self, action: #selector(self.changePage(sender:)), for: UIControlEvents.valueChanged)
-        
-        var imageYPoint = CGFloat(0)
-        for imgUrl in (detailFood?.detail_section)! {
-            let imageView = UIImageView(frame: CGRect(x: 0, y: imageYPoint, width: view.frame.width, height: detailView.detailImageView.frame.height))
-            imageView.af_setImage(withURL: URL(string: imgUrl)!)
-            detailView.detailImageView.addSubview(imageView)
-            imageYPoint += detailView.detailImageView.frame.height
-        }
-        
-        let detailViewHeight = detailView.detailImageView.frame.height * CGFloat(integerLiteral: (detailFood?.detail_section.count)!)
-        detailView.detailImageView.frame = CGRect(x: 0, y: 456, width: view.frame.width, height: detailViewHeight)
-        
-        detailView.scrollView.contentSize = CGSize(width: view.frame.width, height: 456 + detailView.detailImageView.frame.height)
+//    func setDetailImageView(notification: Notification) {
+//        print(notification.userInfo?["imageName"] as! String)
+//        let image = DataTask.imageCache.image(withIdentifier: notification.userInfo?["imageName"] as! String)
+//        
+//        /*
+//         * 이미지 하나당 height 계산법 
+//         * x : y = a : b  -> b = y*a / x
+//        */
+//        let imageHeight = (view.frame.width * (image?.size.height)!) / (image?.size.width)!
+//        
+//        let imageView = UIImageView(frame: CGRect(x: 0, y: detailView.detailImageView.frame.height, width: view.frame.width, height: imageHeight))
+//        imageView.image = image
+//        detailView.detailImageView.addSubview(imageView)
+//        
+//        detailView.detailImageView.frame = CGRect(x: 0, y: 456, width: view.frame.width, height: detailView.detailImageView.frame.height + imageHeight)
+//        
+//        detailView.scrollView.contentSize = CGSize(width: view.frame.width, height: detailView.detailImageView.frame.height + 440 + detailView.orderButton.frame.height)
+//    }
+
+    func setDetailImageView(notification: Notification) {
+        print("get noti")
+        detailView.detailImageList = notification.userInfo?["detailImageDic"] as! [Int : String]
     }
     
     func setThumbImageView() {
@@ -63,21 +65,5 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
             imageXpoint += view.frame.width
         }
         detailView.thumbnailImageView.contentSize = CGSize(width: view.frame.width * CGFloat((detailFood?.thumb_images.count)!), height: detailView.thumbnailImageView.frame.height)
-    }
-    
-    func configurePageControl() {
-        self.pageControl.numberOfPages = (detailFood?.thumb_images.count)!
-        self.pageControl.currentPage = 0
-        self.view.addSubview(pageControl)
-    }
-    
-    func changePage(sender: AnyObject) -> () {
-        let x = CGFloat(pageControl.currentPage) * view.frame.size.width
-        detailView.thumbnailImageView.setContentOffset(CGPoint(x:x, y:0), animated: true)
-    }
-    
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        let pageNumber = detailView.thumbnailImageView.contentOffset.x / detailView.thumbnailImageView.frame.size.width
-        pageControl.currentPage = Int(pageNumber)
     }
 }

@@ -125,6 +125,7 @@ class DetailFood: Food {
     let delivery_fee: String
     let prices: [String]
     let detail_section: [String]
+    var detailImageDic: [Int : String]
     
     init(originalFood: Food, detailFood: [String:Any]) {
         top_image = detailFood["top_image"] as! String
@@ -135,7 +136,14 @@ class DetailFood: Food {
         delivery_fee = detailFood["delivery_fee"] as! String
         prices = detailFood["prices"] as! [String]
         detail_section = detailFood["detail_section"] as! [String]
+        detailImageDic = [Int : String]()
         
         super.init(food: originalFood)
+        
+        DataTask().downloadDetailImage(imageUrls: self.detail_section, hash: self.detail_hash, completionHandler: { (complete: [Int : String]) in
+            self.detailImageDic = complete
+            print("noti post")
+            NotificationCenter.default.post(name: NSNotification.Name("detailImage"), object: self, userInfo: ["detailImageDic":self.detailImageDic])
+        })
     }
 }

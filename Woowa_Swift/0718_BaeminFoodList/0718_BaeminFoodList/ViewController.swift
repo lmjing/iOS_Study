@@ -53,14 +53,6 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        //구: 이미지 다운 코드
-//        let documentsURL = FileManager.default.urls(for: .cachesDirectory , in: .userDomainMask)[0]
-//        let fileURL = documentsURL.appendingPathComponent(food["detail_hash"] as! String + ".jpg")
-//        let image = UIImage(contentsOfFile: fileURL.path)
-//        
-//        cell.imageView?.image = image
-//        cell.imageView?.contentMode = UIViewContentMode.scaleAspectFit
-        
         let food = foodAllList[indexPath.section].foodList[indexPath.row]
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CustomTableViewCell
@@ -92,7 +84,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         guard let sectionInfo = foodAllList[section].foodType.section else { return test }
         test.titleLabel.text = sectionInfo.title
         test.descriptionLabel.text = sectionInfo.description
-        test.titleLabel.frame = CGRect(x: 0, y: 50, width: sectionInfo.title.characters.count, height: 30)
+        test.titleLabel.layer.frame = CGRect(x: 0, y: 10, width: sectionInfo.title.characters.count, height: 30)
         
         return test
     }

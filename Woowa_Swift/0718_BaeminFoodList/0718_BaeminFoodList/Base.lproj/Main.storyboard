@@ -29,7 +29,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="128"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rSd-tR-pHQ" id="eAw-15-foV">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="127"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="127.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" restorationIdentifier="titleLabel" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="djM-um-d4G">
@@ -107,6 +107,7 @@
                                 <subviews>
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CYi-s1-A8P">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="226"/>
+                                        <color key="backgroundColor" red="0.36078431372549019" green="0.37647058823529411" blue="0.41960784313725491" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="226" id="mgI-TF-90D"/>
                                         </constraints>
@@ -191,9 +192,9 @@
                                         <size key="shadowOffset" width="0.0" height="0.0"/>
                                     </label>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="adX-de-VlC">
-                                        <rect key="frame" x="0.0" y="456" width="375" height="211"/>
+                                        <rect key="frame" x="0.0" y="440" width="375" height="0.0"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" red="0.98110799680000005" green="0.99835759400000001" blue="0.60226542719999998" alpha="1" colorSpace="calibratedRGB"/>
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -235,6 +236,7 @@
                             <outlet property="deliveryInfoLabel" destination="8KA-k6-pms" id="fpc-6t-SAs"/>
                             <outlet property="descriptionLabel" destination="SBA-f0-dF9" id="YWO-GD-cw0"/>
                             <outlet property="detailImageView" destination="adX-de-VlC" id="nHq-8B-Sc7"/>
+                            <outlet property="orderButton" destination="nax-97-Jbk" id="ZjQ-jt-vZR"/>
                             <outlet property="pointLabel" destination="9hB-YP-LeF" id="uPx-12-Od6"/>
                             <outlet property="priceLabel" destination="NkX-9V-9q8" id="YMV-81-aua"/>
                             <outlet property="scrollView" destination="QiR-8a-8Yg" id="qd5-NN-G0p"/>
