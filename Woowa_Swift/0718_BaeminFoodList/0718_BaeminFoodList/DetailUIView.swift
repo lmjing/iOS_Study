@@ -20,6 +20,7 @@ class DetailUIView: UIView, UIScrollViewDelegate {
     @IBOutlet weak var detailImageView: UIView!
     @IBOutlet weak var orderButton: UIButton!
     @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var deliveryFeeTitleLabel: UILabel!
     
     var pageControl : UIPageControl = UIPageControl(frame: CGRect(x:50,y: 300, width:200, height:50))
     
@@ -31,8 +32,14 @@ class DetailUIView: UIView, UIScrollViewDelegate {
                 //TODO : 가격 어떤거 띄워줘야 함?
                 priceLabel.text = detailFood.prices[0]
                 pointLabel.text = detailFood.point
-                deliveryFeeLabel.text = detailFood.delivery_fee
                 deliveryInfoLabel.text = detailFood.delivery_info
+                deliveryInfoLabel.numberOfLines = 3
+                deliveryInfoLabel.sizeToFit()
+                
+                let offsetY = deliveryInfoLabel.frame.height + deliveryFeeTitleLabel.frame.minY
+                deliveryFeeTitleLabel.frame = CGRect(x: 17, y: offsetY, width: 64, height: 21)
+                deliveryFeeLabel.frame = CGRect(x: 99, y: offsetY, width: 255, height: 21)
+                deliveryFeeLabel.text = detailFood.delivery_fee
                 
                 configurePageControl()
                 thumbnailImageView.delegate = self
@@ -94,6 +101,7 @@ class DetailUIView: UIView, UIScrollViewDelegate {
         let imageView = UIImageView(frame: CGRect(x: 0, y: detailImageView.frame.height, width: frame.width, height: imageHeight))
         imageView.image = image
         detailImageView.addSubview(imageView)
-        detailImageView.frame = CGRect(x: 0, y: 440, width: frame.width, height: detailImageView.frame.height + imageHeight)
+        let offsetY = deliveryFeeTitleLabel.frame.height + deliveryFeeTitleLabel.frame.midY
+        detailImageView.frame = CGRect(x: 0, y: offsetY, width: frame.width, height: detailImageView.frame.height + imageHeight)
     }
 }
