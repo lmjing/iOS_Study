@@ -14,4 +14,20 @@ class CustomCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
     }
+    
+    func configureCell(index: Int) {
+        print(#function)
+        DispatchQueue.main.async {
+            let documentsURL = FileManager.default.urls(for: .cachesDirectory , in: .userDomainMask)[0]
+            let fileURL = documentsURL.appendingPathComponent(String(index + 1) + ".jpg")
+            let image = UIImage(contentsOfFile: fileURL.path)
+            self.imageView.image = image
+        }
+    }
+    
+    func configureCell2(image: UIImage) {
+        DispatchQueue.main.async {
+            self.imageView.image = image
+        }
+    }
 }

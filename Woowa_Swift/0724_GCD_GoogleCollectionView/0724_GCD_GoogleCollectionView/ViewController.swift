@@ -11,6 +11,10 @@ import UIKit
 class ViewController: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
+    var imageList = [Int:UIImage]()
+    var jsonDict = [[String:String]]()
+    let dataTask = DataTask()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -18,33 +22,52 @@ class ViewController: UIViewController {
         collectionView.dataSource = self
         collectionView.allowsMultipleSelection = true
         
-        DataTask().getData()
+        dataTask.getData()
         
+        NotificationCenter.default.addObserver(self, selector: #selector(setCount), name: NSNotification.Name("data"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(setImageView), name: NSNotification.Name("imageDown"), object: nil)
     }
     
+    func setCount(notification: Notification) {
+        let jsonDict = notification.userInfo?["data"] as! [[String:String]]
+        self.jsonDict = jsonDict
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
+        }
+    }
+    
     func setImageView(notification: Notification) {
-        self.collectionView.reloadData()
+        let index = notification.userInfo?["index"] as! Int
+        let data = notification.userInfo?["data"] as! Data
+        let image = UIImage(data: data)
+        imageList[index] = image
+        
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
+        }
     }
 }
 
 extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
+//    func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
+//        for indexPath in indexPaths{
+//            dataTask.getImage2(title: jsonDict[indexPath.row]["title"]!, url: jsonDict[indexPath.row]["image"]!)
+//        }
+//    }
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CustomCollectionViewCell
         cell.indexLabel.text = String(indexPath.row + 1)
-        
-        let documentsURL = FileManager.default.urls(for: .cachesDirectory , in: .userDomainMask)[0]
-        let fileURL = documentsURL.appendingPathComponent(String(indexPath.row + 1) + ".jpg")
-        let image = UIImage(contentsOfFile: fileURL.path)
-        cell.imageView.image = image
-        
-        cell.frame.size = CGSize(width: 128, height: 50)
+        //cell.configureCell(index: indexPath.row)
+        if let image = imageList[indexPath.row + 1] {
+            cell.configureCell2(image: image)
+        }
         
         return cell
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 100
+        return jsonDict.count
     }
 }
