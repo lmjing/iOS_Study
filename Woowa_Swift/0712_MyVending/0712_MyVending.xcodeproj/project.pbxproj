@@ -17,6 +17,8 @@
 		98034B701F1601EF00452E38 /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98034B6E1F1601EF00452E38 /* Food.swift */; };
 		98034B711F1601EF00452E38 /* FoodVendingMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98034B6F1F1601EF00452E38 /* FoodVendingMachine.swift */; };
 		98034B7D1F16378D00452E38 /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98034B7C1F16378D00452E38 /* AddViewController.swift */; };
+		983159B21F26DED300119A2C /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 983159B11F26DED300119A2C /* Restaurant.swift */; };
+		983159B41F26E42B00119A2C /* FoodVendingMachine3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 983159B31F26E42B00119A2C /* FoodVendingMachine3.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +34,8 @@
 		98034B6E1F1601EF00452E38 /* Food.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Food.swift; sourceTree = "<group>"; };
 		98034B6F1F1601EF00452E38 /* FoodVendingMachine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodVendingMachine.swift; sourceTree = "<group>"; };
 		98034B7C1F16378D00452E38 /* AddViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
+		983159B11F26DED300119A2C /* Restaurant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
+		983159B31F26E42B00119A2C /* FoodVendingMachine3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodVendingMachine3.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,8 +69,10 @@
 			isa = PBXGroup;
 			children = (
 				98034B6E1F1601EF00452E38 /* Food.swift */,
+				983159B11F26DED300119A2C /* Restaurant.swift */,
 				98034B6F1F1601EF00452E38 /* FoodVendingMachine.swift */,
 				50C771DA1F1B26C700C9066A /* FoodVendingMachine2.swift */,
+				983159B31F26E42B00119A2C /* FoodVendingMachine3.swift */,
 				98034B5C1F16011600452E38 /* AppDelegate.swift */,
 				98034B5E1F16011600452E38 /* ViewController.swift */,
 				98034B601F16011600452E38 /* Main.storyboard */,
@@ -155,9 +161,11 @@
 				98034B7D1F16378D00452E38 /* AddViewController.swift in Sources */,
 				98034B5F1F16011600452E38 /* ViewController.swift in Sources */,
 				98034B5D1F16011600452E38 /* AppDelegate.swift in Sources */,
+				983159B21F26DED300119A2C /* Restaurant.swift in Sources */,
 				98034B701F1601EF00452E38 /* Food.swift in Sources */,
 				50C771DB1F1B26C700C9066A /* FoodVendingMachine2.swift in Sources */,
 				98034B711F1601EF00452E38 /* FoodVendingMachine.swift in Sources */,
+				983159B41F26E42B00119A2C /* FoodVendingMachine3.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
