@@ -10,17 +10,19 @@ import Foundation
 
 class DataTask {
     func getData() {
-        URLSession(configuration: URLSessionConfiguration.default).dataTask(with:
-        URL(string: "http://125.209.194.123/doodle.php")!) {
-            (data, response, error) in
-            let jsonDict: [[String:String]] = try! JSONSerialization.jsonObject(with: data!, options: []) as! [[String:String]]
-            
-            NotificationCenter.default.post(name: NSNotification.Name("data"), object: self, userInfo: ["data":jsonDict])
-            for item in jsonDict {
-//                self.getImage(title: item["title"]!, url: item["image"]!)
-                self.getImage2(title: item["title"]!, url: item["image"]!)
-            }
-        }.resume()
+        DispatchQueue.global().async {
+            URLSession(configuration: URLSessionConfiguration.default).dataTask(with:
+            URL(string: "http://125.209.194.123/doodle.php")!) {
+                (data, response, error) in
+                let jsonDict: [[String:String]] = try! JSONSerialization.jsonObject(with: data!, options: []) as! [[String:String]]
+                
+                NotificationCenter.default.post(name: NSNotification.Name("data"), object: self, userInfo: ["data":jsonDict])
+//                for item in jsonDict {
+//                    //                self.getImage(title: item["title"]!, url: item["image"]!)
+//                    self.getImage2(title: item["title"]!, url: item["image"]!)
+//                }
+            }.resume()
+        }
     }
     
     func getImage(title: String, url: String) {
@@ -65,25 +67,26 @@ class DataTask {
     }
     
     func getImage2(title: String, url: String) {
-                    DispatchQueue.global().async {
-                        URLSession(configuration: URLSessionConfiguration.default).dataTask(with: URL(string: url)!) {
-                            (data, response, error) in
+        DispatchQueue.global().async {
+            URLSession(configuration: URLSessionConfiguration.default).dataTask(with: URL(string: url)!) {
+                (data, response, error) in
         
-                            let documentsURL = FileManager.default.urls(for: .cachesDirectory , in: .userDomainMask)[0]
-                            let destinationFileUrl = documentsURL.appendingPathComponent(title+".jpg")
+                let documentsURL = FileManager.default.urls(for: .cachesDirectory , in: .userDomainMask)[0]
+                let destinationFileUrl = documentsURL.appendingPathComponent(title+".jpg")
         
-                            if let data = data, error == nil {
-                                do {
-                                    NotificationCenter.default.post(name: NSNotification.Name("imageDown"), object: self, userInfo: ["data" : data, "index":Int(title)])
-                                }catch (let writeError) {
-                                    print("Error creating a file \(destinationFileUrl) : \(writeError)")
-                                }
-                            }
-                        }.resume()
+                if let data = data, error == nil {
+                    do {
+                        NotificationCenter.default.post(name: NSNotification.Name("imageDown"), object: self, userInfo: ["data" : data, "index":Int(title)])
+                    }catch (let writeError) {
+                        print("Error creating a file \(destinationFileUrl) : \(writeError)")
                     }
+                }
+            }.resume()
+        }
     }
     
-    func getImage2(title: String, url: String, completion: () -> Void) {
+    func getImage3(title: String, url: String, completion: @escaping (Data)-> Void)
+    {
         DispatchQueue.global().async {
             URLSession(configuration: URLSessionConfiguration.default).dataTask(with: URL(string: url)!) {
                 (data, response, error) in
@@ -93,7 +96,7 @@ class DataTask {
                 
                 if let data = data, error == nil {
                     do {
-                        NotificationCenter.default.post(name: NSNotification.Name("imageDown"), object: self, userInfo: ["data" : data, "index":Int(title)])
+                        completion(data)
                     }catch (let writeError) {
                         print("Error creating a file \(destinationFileUrl) : \(writeError)")
                     }

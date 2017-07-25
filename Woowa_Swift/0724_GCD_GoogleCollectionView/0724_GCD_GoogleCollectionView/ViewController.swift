@@ -34,16 +34,23 @@ class ViewController: UIViewController {
         DispatchQueue.main.async {
             self.collectionView.reloadData()
         }
+        for item in jsonDict {
+            //                self.getImage(title: item["title"]!, url: item["image"]!)
+            dataTask.getImage2(title: item["title"]!, url: item["image"]!)
+        }
     }
     
     func setImageView(notification: Notification) {
+        //solution2
         let index = notification.userInfo?["index"] as! Int
         let data = notification.userInfo?["data"] as! Data
-        let image = UIImage(data: data)
-        imageList[index] = image
         
         DispatchQueue.main.async {
-            self.collectionView.reloadData()
+            //동기 함수여서 main에서 처리해야 한다.
+            //            self.collectionView.reloadData()
+            let image = UIImage(data: data)
+            self.imageList[index] = image
+            self.collectionView.reloadItems(at: [IndexPath(row: index - 1, section: 0)])
         }
     }
 }
@@ -59,10 +66,17 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CustomCollectionViewCell
         cell.indexLabel.text = String(indexPath.row + 1)
+        
+        //solution1
         //cell.configureCell(index: indexPath.row)
+        
+        //solution2
         if let image = imageList[indexPath.row + 1] {
             cell.configureCell2(image: image)
         }
+        
+        //solution3
+//        cell.configureCell3(title: self.jsonDict[indexPath.row]["title"]!, url: self.jsonDict[indexPath.row]["image"]!)
         
         return cell
     }

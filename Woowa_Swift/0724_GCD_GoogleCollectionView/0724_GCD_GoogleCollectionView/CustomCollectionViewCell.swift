@@ -30,4 +30,15 @@ class CustomCollectionViewCell: UICollectionViewCell {
             self.imageView.image = image
         }
     }
+    
+    func configureCell3(title: String, url: String) {
+        DispatchQueue.global().async {
+            DataTask().getImage3(title: title, url: url, completion: { (data) in
+                DispatchQueue.main.async {
+                    let image = UIImage(data: data)
+                    self.imageView.image = image
+                }
+            })
+        }
+    }
 }
