@@ -27,11 +27,12 @@ class AddViewController2: UIViewController {
 
     let center = NotificationCenter.default
     let nc = Notification.Name("NotificationIdentifier2")
-    var vendingMachine2 = FoodVendingMachine2.instance
+//    var vendingMachine2 = FoodVendingMachine2.instance
+    var vendingMachine3 = FoodVendingMachine3.instance
 
     var purchaseImageXPoint = 40
     var purchaseImageFoodName: String?
-    var purchaseImageFoodMenu: Int?
+    //var purchaseImageFoodMenu: Int?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,7 +63,7 @@ class AddViewController2: UIViewController {
     }
 
     func initView() {
-        let menuList = vendingMachine2.getAllCapcityList()
+        let menuList = vendingMachine3.getAllCapcityList()
         for label in capacityLabel {
             if let capacity = menuList[label.tag] {
                 label.text = String(capacity) + "개"
@@ -71,11 +72,9 @@ class AddViewController2: UIViewController {
             }
         }
 
-        moneyLabel.text = "잔액 : " + String(vendingMachine2.balance) + "원"
-        for (menu, _) in vendingMachine2.getBuyList() {
-            print(menu)
-            purchaseImageFoodMenu = menu
-            viewPurchasedList()
+        moneyLabel.text = "잔액 : " + String(vendingMachine3.balance) + "원"
+        for (menu, _) in vendingMachine3.getBuyList() {
+            viewPurchasedList(purchaseImageFoodMenu: menu)
         }
 
         for imageview in foodImageView {
@@ -86,34 +85,19 @@ class AddViewController2: UIViewController {
             imageview.layer.borderColor = UIColor.white.cgColor
         }
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-    //이 코드에서는 굳이 필요없지 않나? ( 질문하기! )
-    override func viewWillAppear(_ animated: Bool) {
-        //        if let imageview = makeImageView(x: purchaseImageXPoint, y: 575) {
-        //            self.view.addSubview(imageview)
-        //            purchaseImageXPoint += 50
-        //            purchaseImageFoodName = nil
-        //        }
-    }
-
-    func viewPurchasedList() {
-        if let imageview = makeImageView(x: purchaseImageXPoint, y: 575) {
+    
+    func viewPurchasedList(purchaseImageFoodMenu: Int) {
+        if let imageview = makeImageView(x: purchaseImageXPoint, y: 575, purchaseImageFoodMenu: purchaseImageFoodMenu) {
             self.view.addSubview(imageview)
             purchaseImageXPoint += 50
-            purchaseImageFoodMenu = nil
         }
     }
 
-    func makeImageView(x: Int, y: Int) -> UIView? {
-        if let menu = purchaseImageFoodMenu {
+    func makeImageView(x: Int, y: Int, purchaseImageFoodMenu: Int) -> UIView? {
+//        if let menu = purchaseImageFoodMenu {
             var cardImage: UIImageView
 
-            switch menu {
+            switch purchaseImageFoodMenu {
             case 1: cardImage = UIImageView(image: #imageLiteral(resourceName: "chiken"))
             case 2: cardImage = UIImageView(image: #imageLiteral(resourceName: "pizza"))
             case 3: cardImage = UIImageView(image: #imageLiteral(resourceName: "bossam"))
@@ -124,9 +108,9 @@ class AddViewController2: UIViewController {
             cardImage.frame = CGRect(x: x, y: y, width: 140, height: 100)
 
             return cardImage
-        } else {
-            return nil
-        }
+//        } else {
+//            return nil
+//        }
     }
 
     func btnPressed(_ btn: UIButton) {
@@ -148,18 +132,88 @@ class AddViewController2: UIViewController {
             food = Food()
         }
 
-        vendingMachine2.add(food: food)
+        vendingMachine3.add(restaurant: food.restaurant, food: food)
     }
 
     func pressPurchase(_ btn: UIButton) {
-        print(String(btn.tag)+"눌림")
-        let menu = btn.tag
+//        let menu = btn.tag
+//
+//        let balance = vendingMachine3.buy(menu: menu)
+//        if balance > 0 {
+//            moneyLabel.text = "잔액 : " + String(balance)
+//            purchaseImageFoodMenu = menu
+//            viewPurchasedList()
+//        } else if balance == -2 {
+//            moneyLabel.text = "선택제품의 재고가 부족합니다."
+//        } else if balance == -1 {
+//            moneyLabel.text = "잔액이 부족합니다."
+//        } else {
+//            print("type error")
+//        }
+    }
 
-        let balance = vendingMachine2.buy(menu: menu)
+    func pressAddMoney(_ btn: UIButton) {
+
+        var balance: Int = 0
+        switch btn.tag {
+        case 1000: balance = vendingMachine3.add(money: 1000)
+        case 5000: balance = vendingMachine3.add(money: 5000)
+        default:
+            print("error!!!!!!")
+        }
+
+        moneyLabel.text = "잔액 : " + String(balance) + "원"
+        print("돈 추가 : " + String(vendingMachine3.balance))
+    }
+
+    func catchNotification(notification: Notification) {
+        let menu = notification.userInfo?["menu"] as! Int
+        let capacitylist = notification.userInfo?["capacitylist"] as! [Int:Int]
+        let capacity = capacitylist[menu]!
+        capacityLabel[menu - 1].text = String(describing: capacity) + "개"
+        menuListView[0].reloadData()
+    }
+}
+
+extension AddViewController2: UITableViewDelegate, UITableViewDataSource {
+
+    func numberOfSections(in tableView: UITableView) -> Int {
+        print(vendingMachine3.menuDic[tableView.tag]?.count)
+        if let count = vendingMachine3.menuDic[tableView.tag]?.count {
+            return count
+        }else {
+            return 0
+        }
+    }
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return vendingMachine3.menuDic[tableView.tag]![section].menu.count
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        let restaurant = vendingMachine3.menuDic[tableView.tag]?[indexPath.section]
+
+        cell.textLabel?.text = restaurant?.name
+        cell.textLabel?.font = UIFont(name: (cell.textLabel?.font.fontName)!, size: 15)
+        let price = restaurant?.menu[indexPath.row].price
+        cell.detailTextLabel?.text = String(describing: price!)
+
+        return cell
+    }
+
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return vendingMachine3.menuDic[tableView.tag]?[section].name
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let restaurantName = vendingMachine3.menuDic[tableView.tag]?[indexPath.section].name
+        let food = vendingMachine3.menuDic[tableView.tag]?[indexPath.section].menu[indexPath.row]
+        
+        let balance = vendingMachine3.buy(restaurant: restaurantName!, food: food!)
         if balance > 0 {
             moneyLabel.text = "잔액 : " + String(balance)
-            purchaseImageFoodMenu = menu
-            viewPurchasedList()
+            viewPurchasedList(purchaseImageFoodMenu: (vendingMachine3.getMenuType(food: food!)?.rawValue)!)
         } else if balance == -2 {
             moneyLabel.text = "선택제품의 재고가 부족합니다."
         } else if balance == -1 {
@@ -168,60 +222,4 @@ class AddViewController2: UIViewController {
             print("type error")
         }
     }
-
-    func pressAddMoney(_ btn: UIButton) {
-
-        var balance: Int = 0
-        switch btn.tag {
-        case 1000: balance = vendingMachine2.add(money: 1000)
-        case 5000: balance = vendingMachine2.add(money: 5000)
-        default:
-            print("error!!!!!!")
-        }
-
-        moneyLabel.text = "잔액 : " + String(balance) + "원"
-        print("돈 추가 : " + String(vendingMachine2.balance))
-    }
-
-    func catchNotification(notification: Notification) {
-        print("Catch notification")
-
-        if let foodList = notification.object as? [Int : Int] ?? nil {
-            for (menu, capacity) in foodList {
-                capacityLabel[menu-1].text = String(capacity)+"개"
-            }
-        }
-    }
-}
-
-extension AddViewController2: UITableViewDelegate, UITableViewDataSource {
-
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        var result = 0
-        if let count = vendingMachine2.menuDic[tableView.tag]?.count {
-            result = count
-        }
-        return result
-    }
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        let titleList: [String] = Array(vendingMachine2.menuDic[tableView.tag]!.keys)
-
-        cell.textLabel?.text = titleList[indexPath.row]
-        cell.textLabel?.font = UIFont(name: (cell.textLabel?.font.fontName)!, size: 15)
-        cell.detailTextLabel?.text = "서브"
-
-        return cell
-    }
-
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "메뉴"
-    }
-
 }

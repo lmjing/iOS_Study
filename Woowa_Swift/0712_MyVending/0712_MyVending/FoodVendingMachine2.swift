@@ -8,10 +8,6 @@
 
 import Foundation
 
-enum Menu: Int {
-    case chicken = 1, pizza, bossam, haumbuger, dduckppokki
-}
-
 class FoodVendingMachine2: NSObject, NSCoding {
 
     static var instance = FoodVendingMachine2()

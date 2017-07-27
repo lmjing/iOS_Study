@@ -1,15 +1,14 @@
 //
-//  SwiftKeychainWrapperExampleTests.swift
-//  SwiftKeychainWrapperExampleTests
+//  _712_MyVendingTests.swift
+//  0712_MyVendingTests
 //
-//  Created by Jason Rendel on 1/27/15.
-//
+//  Created by woowabrothers on 2017. 7. 26..
+//  Copyright © 2017년 woowabrothers. All rights reserved.
 //
 
-import UIKit
 import XCTest
 
-class SwiftKeychainWrapperExampleTests: XCTestCase {
+class _712_MyVendingTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
@@ -23,12 +22,15 @@ class SwiftKeychainWrapperExampleTests: XCTestCase {
     
     func testExample() {
         // This is an example of a functional test case.
-        XCTAssert(true, "Pass")
+        // Use XCTAssert and related functions to verify your tests produce the correct results.
+        
+        let su: Decimal = 02345
+        print(su)
     }
     
     func testPerformanceExample() {
         // This is an example of a performance test case.
-        self.measure() {
+        self.measure {
             // Put the code you want to measure the time of here.
         }
     }
