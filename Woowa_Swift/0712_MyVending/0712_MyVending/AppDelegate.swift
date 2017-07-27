@@ -20,10 +20,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let test = NSKeyedUnarchiver.unarchiveObject(with: data)
             FoodVendingMachine.instance = test as! FoodVendingMachine
         }
-        let loadData2 = UserDefaults.standard.data(forKey: "vendingMachine2")
+        let loadData2 = UserDefaults.standard.data(forKey: "vendingMachine3")
         if let data = loadData2 {
             let test = NSKeyedUnarchiver.unarchiveObject(with: data)
-            FoodVendingMachine2.instance = test as! FoodVendingMachine2
+            FoodVendingMachine3.instance = test as! FoodVendingMachine3
         }
 
         return true
@@ -42,8 +42,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let data = NSKeyedArchiver.archivedData(withRootObject: FoodVendingMachine.instance)
         UserDefaults.standard.set(data, forKey: "vendingMachine")
 
-        let data2 = NSKeyedArchiver.archivedData(withRootObject: FoodVendingMachine2.instance)
-        UserDefaults.standard.set(data2, forKey: "vendingMachine2")
+        let data2 = NSKeyedArchiver.archivedData(withRootObject: FoodVendingMachine3.instance)
+        UserDefaults.standard.set(data2, forKey: "vendingMachine3")
 
     }
 

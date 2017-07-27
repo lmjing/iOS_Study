@@ -50,9 +50,6 @@ class DetailUIView: UIView, UIScrollViewDelegate {
         }
     }
     
-    override func draw(_ rect: CGRect) {
-    }
-    
     func setThumbImageView() {
         var imageXpoint = CGFloat(0)
         for img in detailfood!.thumb_images {

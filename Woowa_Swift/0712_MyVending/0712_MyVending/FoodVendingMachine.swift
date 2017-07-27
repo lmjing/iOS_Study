@@ -41,7 +41,8 @@ class FoodVendingMachine: NSObject, NSCoding {
     }
 
     func add(food: Food) {
-        let foodName = food.restaurant + "-" + food.name
+        //let foodName = food.restaurant + "-" + food.name
+        let foodName = food.name
 
         if let exist = menuDic[foodName] {
             exist.capacity += food.capacity
