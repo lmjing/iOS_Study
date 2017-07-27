@@ -71,12 +71,12 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
         //cell.configureCell(index: indexPath.row)
         
         //solution2
-        if let image = imageList[indexPath.row + 1] {
-            cell.configureCell2(image: image)
-        }
+//        if let image = imageList[indexPath.row + 1] {
+//            cell.configureCell2(image: image)
+//        }
         
         //solution3
-//        cell.configureCell3(title: self.jsonDict[indexPath.row]["title"]!, url: self.jsonDict[indexPath.row]["image"]!)
+        cell.configureCell3(title: self.jsonDict[indexPath.row]["title"]!, url: self.jsonDict[indexPath.row]["image"]!)
         
         return cell
     }
