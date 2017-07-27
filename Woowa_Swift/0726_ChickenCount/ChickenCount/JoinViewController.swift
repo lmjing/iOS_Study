@@ -35,7 +35,8 @@ class JoinViewController: UIViewController {
             return false
         }
         for character in _id.unicodeScalars {
-            if (character < "0".unicodeScalars.first! || character > "9".unicodeScalars.first!) && (character < "a".unicodeScalars.first! || character > "z".unicodeScalars.first!) {
+//            if (character < "0".unicodeScalars.first! || character > "9".unicodeScalars.first!) && (
+            if character < "a".unicodeScalars.first! || character > "z".unicodeScalars.first! {
                 return false
             }
         }
@@ -59,7 +60,7 @@ class JoinViewController: UIViewController {
         if id.isEmpty || password.isEmpty || passwordConfirm.isEmpty {
             UIAlertController().oneButtonAlert(target: self, title: "경고!!!!!", message: "빈칸을 채워주세요!!!")
         } else {
-            if !checkId(id: id) && !checkPassword(id: id, password: password, passwordConfirm: passwordConfirm) {
+            if !checkId(id: id) || !checkPassword(id: id, password: password, passwordConfirm: passwordConfirm) {
                 UIAlertController().oneButtonAlert(target: self, title: "경고!!!!!", message: "아이디와 비밀번호를 확인해주세요")
             } else {
                 User.sharedInstance.set(id: id, password: password)

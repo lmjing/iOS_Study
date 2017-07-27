@@ -37,10 +37,11 @@ class ConfirmViewControllerTest: XCTestCase {
 //        confirmViewController.sendButtonAction()
         
         let networking = Networking()
-//        networking.postConfirm(message: ["username" : "01029000019", "text" : "012345"])
+        networking.postConfirm(message: ["username" : "01029000019", "text" : "012345"])
         
         
         let expectation = XCTNSNotificationExpectation(name: "startCountTime", object: networking)
+        //이 사이에 async한 코드를 테스트하면 된다.
         XCTWaiter().wait(for: [expectation], timeout: 30)
     }
     

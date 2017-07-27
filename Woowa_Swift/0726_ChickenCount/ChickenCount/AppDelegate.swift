@@ -18,6 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         let keyChain = KeyChain()
+        keyChain.removeKeyChain()
         keyChain.loadKeyChain()
         
         if User.sharedInstance.chickenDate != nil {
