@@ -80,21 +80,7 @@ class AddViewController: UIViewController {
             }
         }
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-    //이 코드에서는 굳이 필요없지 않나? ( 질문하기! )
-    override func viewWillAppear(_ animated: Bool) {
-        //        if let imageview = makeImageView(x: purchaseImageXPoint, y: 575) {
-        //            self.view.addSubview(imageview)
-        //            purchaseImageXPoint += 50
-        //            purchaseImageFoodName = nil
-        //        }
-    }
-
+    
     //이 코드를 그냥 호출하지 말고 notification으로 받아 호출을 받았을 때 실행되도록(at VendingMachine)
     //지금은 로컬이라 상관 없지만, 서버와 연동을 한다면 실제 구매가 확정된 이후 그 noti를 받아 비동기 적으로 처리해야한다고 생각해야 함.
     func viewPurchasedList() {
@@ -189,8 +175,8 @@ class AddViewController: UIViewController {
 
     func catchNotification(notification: Notification) {
         print("Catch notification")
-
         if let foodList = notification.object as? [String : Int] ?? nil {
+            print(foodList)
             for (foodName, capacity) in foodList {
                 switch foodName {
                 case chickenName: capacityLabel[0].text = String(capacity)+"개"
