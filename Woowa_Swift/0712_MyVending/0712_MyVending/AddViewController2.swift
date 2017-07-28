@@ -14,10 +14,8 @@ import UIKit
  dic형태로 key로 구분한 후 모델에서는 그냥 보내고 컨트롤러에서 어떤 케이스인지 판단 한 후 처리 할 것
  */
 class AddViewController2: UIViewController {
-
     @IBOutlet var addFoodBtn: [UIButton]!
     @IBOutlet var addMoneyBtn: [UIButton]!
-    @IBOutlet var purchaseBtn: [UIButton]!
 
     @IBOutlet var capacityLabel: [UILabel]!
     @IBOutlet var foodImageView: [UIImageView]!
@@ -46,10 +44,6 @@ class AddViewController2: UIViewController {
 
         for btn in addMoneyBtn {
             btn.addTarget(self, action: #selector(pressAddMoney(_:)), for: .touchUpInside)
-        }
-
-        for btn in purchaseBtn {
-            btn.addTarget(self, action: #selector(pressPurchase(_:)), for: .touchUpInside)
         }
 
         for btn in addFoodBtn {
@@ -135,23 +129,6 @@ class AddViewController2: UIViewController {
         vendingMachine3.add(restaurant: food.restaurant, food: food)
     }
 
-    func pressPurchase(_ btn: UIButton) {
-//        let menu = btn.tag
-//
-//        let balance = vendingMachine3.buy(menu: menu)
-//        if balance > 0 {
-//            moneyLabel.text = "잔액 : " + String(balance)
-//            purchaseImageFoodMenu = menu
-//            viewPurchasedList()
-//        } else if balance == -2 {
-//            moneyLabel.text = "선택제품의 재고가 부족합니다."
-//        } else if balance == -1 {
-//            moneyLabel.text = "잔액이 부족합니다."
-//        } else {
-//            print("type error")
-//        }
-    }
-
     func pressAddMoney(_ btn: UIButton) {
 
         var balance: Int = 0
@@ -178,7 +155,6 @@ class AddViewController2: UIViewController {
 extension AddViewController2: UITableViewDelegate, UITableViewDataSource {
 
     func numberOfSections(in tableView: UITableView) -> Int {
-        print(vendingMachine3.menuDic[tableView.tag]?.count)
         if let count = vendingMachine3.menuDic[tableView.tag]?.count {
             print("section",count)
             return count
