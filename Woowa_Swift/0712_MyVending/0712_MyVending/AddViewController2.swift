@@ -171,7 +171,7 @@ class AddViewController2: UIViewController {
         let capacitylist = notification.userInfo?["capacitylist"] as! [Int:Int]
         let capacity = capacitylist[menu]!
         capacityLabel[menu - 1].text = String(describing: capacity) + "개"
-        menuListView[0].reloadData()
+        menuListView[menu - 1].reloadData()
     }
 }
 
@@ -180,6 +180,7 @@ extension AddViewController2: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         print(vendingMachine3.menuDic[tableView.tag]?.count)
         if let count = vendingMachine3.menuDic[tableView.tag]?.count {
+            print("section",count)
             return count
         }else {
             return 0
@@ -187,6 +188,8 @@ extension AddViewController2: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        let count = vendingMachine3.menuDic[tableView.tag]![section].menu.count
+        print("row",count)
         return vendingMachine3.menuDic[tableView.tag]![section].menu.count
     }
 
