@@ -12,6 +12,7 @@
 		981CACF41F3833C3009A6B12 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 981CACF21F3833C3009A6B12 /* Main.storyboard */; };
 		981CACF61F3833C3009A6B12 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 981CACF51F3833C3009A6B12 /* Assets.xcassets */; };
 		981CACF91F3833C3009A6B12 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 981CACF71F3833C3009A6B12 /* LaunchScreen.storyboard */; };
+		981CAD031F3843CF009A6B12 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 981CAD021F3843CF009A6B12 /* CoreLocation.framework */; };
 		9B1F77D87C7E0934B768A968 /* Pods_exerciseMap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B866B71ED2F5120E6A93A71 /* Pods_exerciseMap.framework */; };
 /* End PBXBuildFile section */
 
@@ -24,6 +25,7 @@
 		981CACF51F3833C3009A6B12 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		981CACF81F3833C3009A6B12 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		981CACFA1F3833C3009A6B12 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		981CAD021F3843CF009A6B12 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		9B866B71ED2F5120E6A93A71 /* Pods_exerciseMap.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_exerciseMap.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4050511BD63750A2A90E1E3 /* Pods-exerciseMap.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-exerciseMap.debug.xcconfig"; path = "Pods/Target Support Files/Pods-exerciseMap/Pods-exerciseMap.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -33,6 +35,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				981CAD031F3843CF009A6B12 /* CoreLocation.framework in Frameworks */,
 				9B1F77D87C7E0934B768A968 /* Pods_exerciseMap.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -83,6 +86,7 @@
 		C8AF4987252D664B8385EA79 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				981CAD021F3843CF009A6B12 /* CoreLocation.framework */,
 				9B866B71ED2F5120E6A93A71 /* Pods_exerciseMap.framework */,
 			);
 			name = Frameworks;
@@ -376,6 +380,7 @@
 				981CACFF1F3833C3009A6B12 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
