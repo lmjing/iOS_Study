@@ -9,6 +9,7 @@
 import UIKit
 import GoogleMaps
 import CoreLocation
+import GooglePlaces
 
 class ViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDelegate {
 
@@ -17,26 +18,23 @@ class ViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDel
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         currentLocationButton.addTarget(self, action: #selector(moveToCurrentSearch), for: .touchUpInside)
     }
     
     func moveToCurrentSearch() {
         print("눌림")
+        let autocompleteController = GMSAutocompleteViewController()
+        autocompleteController.delegate = self
+        present(autocompleteController, animated: true, completion: nil)
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
+    
     override func loadView() {
         // Create a GMSCameraPosition that tells the map to display the
         // coordinate -33.86,151.20 at zoom level 6.
         let camera = GMSCameraPosition.camera(withLatitude: 37.5106336, longitude: 127.11220, zoom: 16.0)
         mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
-        mapView.isMyLocationEnabled = true
         view = mapView
+        mapView.isMyLocationEnabled = true
         
         // Creates a marker in the center of the map.
         let marker = GMSMarker()
@@ -44,7 +42,6 @@ class ViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDel
         marker.title = "Sydney"
         marker.snippet = "Australia"
         marker.map = mapView
-        
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -60,5 +57,36 @@ class ViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDel
             print("User's location is unknown")
         }
     }
+}
+
+extension ViewController: GMSAutocompleteViewControllerDelegate {
+    
+    // Handle the user's selection.
+    func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
+        print("Place name: \(place.name)")
+        print("Place address: \(place.formattedAddress)")
+        print("Place attributions: \(place.attributions)")
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func viewController(_ viewController: GMSAutocompleteViewController, didFailAutocompleteWithError error: Error) {
+        // TODO: handle the error.
+        print("Error: ", error.localizedDescription)
+    }
+    
+    // User canceled the operation.
+    func wasCancelled(_ viewController: GMSAutocompleteViewController) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    // Turn the network activity indicator on and off again.
+    func didRequestAutocompletePredictions(_ viewController: GMSAutocompleteViewController) {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+    }
+    
+    func didUpdateAutocompletePredictions(_ viewController: GMSAutocompleteViewController) {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = false
+    }
+    
 }
 

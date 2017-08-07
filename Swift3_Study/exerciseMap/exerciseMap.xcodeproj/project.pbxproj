@@ -13,6 +13,8 @@
 		981CACF61F3833C3009A6B12 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 981CACF51F3833C3009A6B12 /* Assets.xcassets */; };
 		981CACF91F3833C3009A6B12 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 981CACF71F3833C3009A6B12 /* LaunchScreen.storyboard */; };
 		981CAD031F3843CF009A6B12 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 981CAD021F3843CF009A6B12 /* CoreLocation.framework */; };
+		981CAD051F3867D2009A6B12 /* ViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981CAD041F3867D2009A6B12 /* ViewController2.swift */; };
+		981CAD071F387DDA009A6B12 /* config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 981CAD061F387DDA009A6B12 /* config.plist */; };
 		9B1F77D87C7E0934B768A968 /* Pods_exerciseMap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B866B71ED2F5120E6A93A71 /* Pods_exerciseMap.framework */; };
 /* End PBXBuildFile section */
 
@@ -26,6 +28,8 @@
 		981CACF81F3833C3009A6B12 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		981CACFA1F3833C3009A6B12 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		981CAD021F3843CF009A6B12 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		981CAD041F3867D2009A6B12 /* ViewController2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController2.swift; sourceTree = "<group>"; };
+		981CAD061F387DDA009A6B12 /* config.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = config.plist; sourceTree = "<group>"; };
 		9B866B71ED2F5120E6A93A71 /* Pods_exerciseMap.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_exerciseMap.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4050511BD63750A2A90E1E3 /* Pods-exerciseMap.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-exerciseMap.debug.xcconfig"; path = "Pods/Target Support Files/Pods-exerciseMap/Pods-exerciseMap.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -79,6 +83,8 @@
 				981CACF51F3833C3009A6B12 /* Assets.xcassets */,
 				981CACF71F3833C3009A6B12 /* LaunchScreen.storyboard */,
 				981CACFA1F3833C3009A6B12 /* Info.plist */,
+				981CAD041F3867D2009A6B12 /* ViewController2.swift */,
+				981CAD061F387DDA009A6B12 /* config.plist */,
 			);
 			path = exerciseMap;
 			sourceTree = "<group>";
@@ -154,6 +160,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				981CAD071F387DDA009A6B12 /* config.plist in Resources */,
 				981CACF91F3833C3009A6B12 /* LaunchScreen.storyboard in Resources */,
 				981CACF61F3833C3009A6B12 /* Assets.xcassets in Resources */,
 				981CACF41F3833C3009A6B12 /* Main.storyboard in Resources */,
@@ -217,6 +224,7 @@
 			files = (
 				981CACF11F3833C3009A6B12 /* ViewController.swift in Sources */,
 				981CACEF1F3833C3009A6B12 /* AppDelegate.swift in Sources */,
+				981CAD051F3867D2009A6B12 /* ViewController2.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
