@@ -12,10 +12,17 @@ import CoreLocation
 
 class ViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDelegate {
 
+    @IBOutlet weak var currentLocationButton: UIButton!
     var mapView: GMSMapView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        currentLocationButton.addTarget(self, action: #selector(moveToCurrentSearch), for: .touchUpInside)
+    }
+    
+    func moveToCurrentSearch() {
+        print("눌림")
     }
 
     override func didReceiveMemoryWarning() {
